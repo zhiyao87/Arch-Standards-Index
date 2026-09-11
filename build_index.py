@@ -417,6 +417,11 @@ def build_readme(rows, notices=None):
     w("> **受著作权法保护** —— 有全文 PDF 直链的，链接指向市住建委官网自行公开的原件，")
     w("> 本仓库不镜像。批准通知本身属行政文件，不受著作权法保护。")
     w("")
+    # 14 组明细表格放到默认折叠的 <details> 里 —— README 167 KB 主要来自这里（110 KB+）
+    # summary 里给出分组数与条数，让读者一眼判断要不要展开
+    w("<details>")
+    w("<summary><strong>各专业方向明细（共 %d 条 · 点击展开）</strong></summary>\n"
+      % len(notices))
     for g in NOTICE_GROUP_ORDER:
         items = [r for r in notices if r.get("分组") == g]
         if not items:
@@ -433,6 +438,8 @@ def build_readme(rows, notices=None):
                 link_md(r.get("官方链接"), "发布页"),
                 link_md(full, "PDF")))
         w("")
+    w("</details>")
+    w("")
     w("---")
     w("")
     w("## 六、官方免费查阅渠道")
