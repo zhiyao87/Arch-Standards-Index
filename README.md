@@ -317,10 +317,13 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 ```bash
 python check_links.py              # 巡检全部 83 条
 python check_links.py --limit 10   # 快速自检
+python check_links.py --strict     # 把「可疑」也视为失败，人工复核用
 python check_links.py --json out.json
 ```
 
-存在异常链接时退出码为 1，可直接接进 CI：
+退出码：**只有存在真正失效的链接才返回 1**，可直接接进 CI。
+「可疑」（返回 200 但内容不匹配）默认不判失败 —— 本库有若干条目因原公告页已从住建部
+CMS 移除而有意降级为栏目入口，属预期状态，不该让 CI 变红。要严查时加 `--strict`。
 
 ```yaml
 # .github/workflows/link-check.yml

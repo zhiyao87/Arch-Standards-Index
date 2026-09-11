@@ -12,12 +12,18 @@
 ----
     python check_links.py                # 巡检全部
     python check_links.py --limit 10     # 只查前 10 条（快速自检）
+    python check_links.py --strict       # 把「可疑」也视为失败（人工复核用）
     python check_links.py --json out.json  # 结果另存为 JSON
 
 退出码
 ------
-    0  全部正常
-    1  存在异常链接（便于接入 CI）
+    0    无失效链接
+    1    存在失效链接（bad）——便于接入 CI
+    加 --strict 时，存在「可疑」（warn）也返回 1
+
+    默认不因 warn 失败：本库有若干条目因原公告页已从住建部 CMS 移除，
+    有意降级为栏目入口，这类 200 但内容不匹配属预期状态，不该让 CI 变红。
+    需要严查时用 --strict 手工跑。
 
 注意
 ----
@@ -118,6 +124,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="只查前 N 条")
     ap.add_argument("--sleep", type=float, default=0.5, help="请求间隔秒数")
+    ap.add_argument("--strict", action="store_true",
+                    help="把 warn（200 但内容不匹配）也视为失败")
     ap.add_argument("--json", help="把结果写入 JSON 文件")
     args = ap.parse_args()
 
@@ -161,7 +169,13 @@ def main():
         print()
         print("结果已写入 %s" % args.json)
 
-    return 1 if (counts["warn"] or counts["bad"]) else 0
+    # 默认只让「真失效」触发失败；warn 多为有意降级的栏目入口，需 --strict 才计入
+    failed = counts["bad"] or (args.strict and counts["warn"])
+    if failed:
+        print()
+        print("✘ 巡检未通过（%s）" % (
+            "含可疑项，--strict 模式" if counts["bad"] == 0 else "存在失效链接"))
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
