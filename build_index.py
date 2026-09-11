@@ -25,6 +25,7 @@ TITLE = "建筑设计规范索引"   # README 标题，与 GitHub 仓库名（Ar
 REPO = "Arch-Standards-Index"  # GitHub 仓库名，用于 README 里的 clone 地址与目录结构
 SRC = os.path.join(BASE, "data", "standards.csv")
 README = os.path.join(BASE, "README.md")
+SH_NOTICES_MD = os.path.join(BASE, "SH-NOTICES.md")   # 规范批准/发布通知的完整明细，从 README 拆出
 OBS_DIR = os.path.join(BASE, "obsidian")
 OBS_INDEX = os.path.join(OBS_DIR, "标准索引.md")
 OBS_STD = os.path.join(OBS_DIR, "standards")
@@ -417,28 +418,10 @@ def build_readme(rows, notices=None):
     w("> **受著作权法保护** —— 有全文 PDF 直链的，链接指向市住建委官网自行公开的原件，")
     w("> 本仓库不镜像。批准通知本身属行政文件，不受著作权法保护。")
     w("")
-    # 14 组明细表格放到默认折叠的 <details> 里 —— README 167 KB 主要来自这里（110 KB+）
-    # summary 里给出分组数与条数，让读者一眼判断要不要展开
-    w("<details>")
-    w("<summary><strong>各专业方向明细（共 %d 条 · 点击展开）</strong></summary>\n"
-      % len(notices))
-    for g in NOTICE_GROUP_ORDER:
-        items = [r for r in notices if r.get("分组") == g]
-        if not items:
-            continue
-        w("### %s（%d）" % (g, len(items)))
-        w("")
-        w("| 标准名 | 编号 | 批准日期 | 文号 | 批准通知 | 全文 |")
-        w("|---|---|---|---|---|---|")
-        for r in sorted(items, key=lambda x: (x.get("批准日期") or ""), reverse=True):
-            full = r.get("全文PDF") or r.get("附件") or ""
-            w("| %s | %s | %s | %s | %s | %s |" % (
-                r["标准名"], cell(r.get("编号")), cell(r.get("批准日期")),
-                cell(r.get("文号")),
-                link_md(r.get("官方链接"), "发布页"),
-                link_md(full, "PDF")))
-        w("")
-    w("</details>")
+    w("**按专业方向的完整明细（%d 条，14 组）已拆到独立文件，避免把 README 撑到 160 KB+、"
+      "拖慢 GitHub 网页首屏渲染：**" % len(notices))
+    w("")
+    w("👉 [SH-NOTICES.md — 各专业方向明细（点击查看）](SH-NOTICES.md)")
     w("")
     w("---")
     w("")
@@ -467,6 +450,7 @@ def build_readme(rows, notices=None):
     w("```")
     w(REPO + "/")
     w("├── README.md                  本文件（脚本生成；入库，作仓库首页）")
+    w("├── SH-NOTICES.md              规范批准/发布通知完整明细（脚本生成；入库，README 第五节链过来）")
     w("├── LICENSE                    双许可：脚本 MIT / 数据 CC BY 4.0")
     w("├── .gitattributes             换行符策略（仓库内统一 LF）")
     w("├── .gitignore                 生成产物排除规则")
@@ -723,6 +707,69 @@ def build_readme(rows, notices=None):
     return "\n".join(out)
 
 
+# ---------------------------------------------------------------- SH-NOTICES
+
+def build_sh_notices_md(notices):
+    """生成 SH-NOTICES.md：规范批准 / 发布通知的完整明细。
+
+    从 README 第五节拆出独立文件 —— 369 行明细表占 README 160 KB+ 中的
+    110 KB，即使折叠成 <details> 字节数也不减（GitHub 折叠只是不建 DOM，
+    文件本身仍大）。拆出去后 README 首屏清爽，明细按需点开。
+    """
+    out = []
+    w = out.append
+    w("# 上海工程建设规范批准 / 发布通知（完整明细）")
+    w("")
+    w("> 本文件由 `build_index.py` 自动生成，请勿手改。改数据源请编辑"
+      " `data/sh_notices.tsv`（由 `build_sh_notices.py` 从配套仓库抽取）。")
+    w("")
+    w("每一本上海市工程建设规范，都由市住建委发一纸「关于批准《XXX》为上海市"
+      "工程建设规范的通知」才生效。本文件收录的就是这一纸通知，共 **%d 条**。"
+      % len(notices))
+    w("")
+    w("**为什么单独成册**：官网「现行标准」栏目更新比批准动作慢半拍，2026 年"
+      "新批的那一批（《城市轨道交通地下车站与周边连通工程设计标准》《桥梁改扩建"
+      "技术标准》《钢结构 / 混凝土模块化建筑技术导则》等）在栏目里至今查不到，"
+      "只能从批准通知看到。想跟踪「最近批了什么」，看这里；想查「这本规范现在"
+      "有效吗、全文在哪」，回 README 第四节。")
+    w("")
+    n_hit = sum(1 for r in notices if r.get("编号"))
+    w("| 项目 | 数量 |")
+    w("|---|---|")
+    w("| 通知总数 | %d |" % len(notices))
+    w("| 已能对应上 DGJ08 / DG/TJ08 编号（附全文 PDF） | %d |" % n_hit)
+    w("| 新批准、现行标准栏目尚未收录（暂无编号） | %d |" % (len(notices) - n_hit))
+    w("")
+    w("> 本文件只登记**通知的出处**（发布页 / 红头 PDF / 附件原文），不收录标准"
+      "正文。规范全文是 DGJ08 / DG/TJ08 地方标准，受著作权法保护，本仓库不镜像；"
+      "有全文 PDF 直链的，链接指向市住建委官网自行公开的原件。批准通知本身属"
+      "行政文件，不受著作权法保护。")
+    w("")
+    w("---")
+    w("")
+    for g in NOTICE_GROUP_ORDER:
+        items = [r for r in notices if r.get("分组") == g]
+        if not items:
+            continue
+        w("## %s（%d）" % (g, len(items)))
+        w("")
+        w("| 标准名 | 编号 | 批准日期 | 文号 | 批准通知 | 全文 |")
+        w("|---|---|---|---|---|---|")
+        for r in sorted(items, key=lambda x: (x.get("批准日期") or ""), reverse=True):
+            full = r.get("全文PDF") or r.get("附件") or ""
+            w("| %s | %s | %s | %s | %s | %s |" % (
+                r["标准名"], cell(r.get("编号")), cell(r.get("批准日期")),
+                cell(r.get("文号")),
+                link_md(r.get("官方链接"), "发布页"),
+                link_md(full, "PDF")))
+        w("")
+    w("---")
+    w("")
+    w("[← 返回 README](README.md)")
+    w("")
+    return "\n".join(out)
+
+
 # ---------------------------------------------------------------- Obsidian
 
 def build_obsidian_index(rows):
@@ -886,6 +933,9 @@ def main():
     with open(README, "w", encoding="utf-8", newline="\n") as f:
         f.write(build_readme(rows, notices))
 
+    with open(SH_NOTICES_MD, "w", encoding="utf-8", newline="\n") as f:
+        f.write(build_sh_notices_md(notices))
+
     os.makedirs(OBS_STD, exist_ok=True)
     with open(OBS_INDEX, "w", encoding="utf-8", newline="\n") as f:
         f.write(build_obsidian_index(rows))
@@ -920,6 +970,7 @@ def main():
           % (len(rows), mand, len(rows) - mand, sh))
     print("另收录规范批准 / 发布通知 %d 条" % len(notices))
     print("生成：README.md")
+    print("生成：SH-NOTICES.md")
     print("生成：obsidian/标准索引.md")
     print("生成：obsidian/standards/*.md  （%d 个）" % len(rows))
     print("生成：data/standards_excel.csv")
