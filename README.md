@@ -76,69 +76,69 @@
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55001-2021 | 工程结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761192.html) | 废止 GB 50153-2008 等 8 项标准相关强条 |
-| GB 55002-2021 | 建筑与市政工程抗震通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761174.html) | - |
-| GB 55003-2021 | 建筑与市政地基基础通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761185.html) | - |
-| GB 55004-2021 | 组合结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761186.html) | - |
-| GB 55005-2021 | 木结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761187.html) | - |
-| GB 55006-2021 | 钢结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761191.html) | - |
-| GB 55007-2021 | 砌体结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761188.html) | - |
-| GB 55008-2021 | 混凝土结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762454.html) | 废止 GB 50010-2010 等 36 项标准相关强条 |
-| GB 55017-2021 | 工程勘察通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762455.html) | - |
-| GB 55018-2021 | 工程测量通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762456.html) | - |
+| GB 55001-2021 | 工程结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761192.html) | 废止 GB 50153-2008 等 8 项标准相关强条 |
+| GB 55002-2021 | 建筑与市政工程抗震通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761174.html) | - |
+| GB 55003-2021 | 建筑与市政地基基础通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761185.html) | - |
+| GB 55004-2021 | 组合结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761186.html) | - |
+| GB 55005-2021 | 木结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761187.html) | - |
+| GB 55006-2021 | 钢结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761191.html) | - |
+| GB 55007-2021 | 砌体结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761188.html) | - |
+| GB 55008-2021 | 混凝土结构通用规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762454.html) | 废止 GB 50010-2010 等 36 项标准相关强条 |
+| GB 55017-2021 | 工程勘察通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762455.html) | - |
+| GB 55018-2021 | 工程测量通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762456.html) | - |
 
 ### 建筑（8）
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55015-2021 | 建筑节能与可再生能源利用通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762460.html) | 设计说明中最常引用的节能强规 |
-| GB 55016-2021 | 建筑环境通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762459.html) | - |
-| GB 55019-2021 | 建筑与市政工程无障碍通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762461.html) | 与 GB 50763-2012 并行使用 |
-| GB 55025-2022 | 宿舍、旅馆建筑项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765629.html) | - |
-| GB 55030-2022 | 建筑与市政工程防水通用规范 | 2023-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202210/20221021_768499.html) | - |
-| GB 55031-2022 | 民用建筑通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202208/20220824_767703.html) | 建筑专业最核心的强规 |
-| GB 55037-2022 | 建筑防火通用规范 | 2023-06-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202301/20230118_770016.html) | 与 GB 50016-2014(2018年版) 并行 |
+| GB 55015-2021 | 建筑节能与可再生能源利用通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762460.html) | 设计说明中最常引用的节能强规 |
+| GB 55016-2021 | 建筑环境通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762459.html) | - |
+| GB 55019-2021 | 建筑与市政工程无障碍通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762461.html) | 与 GB 50763-2012 并行使用 |
+| GB 55025-2022 | 宿舍、旅馆建筑项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765629.html) | - |
+| GB 55030-2022 | 建筑与市政工程防水通用规范 | 2023-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_768499.html) | - |
+| GB 55031-2022 | 民用建筑通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_767703.html) | 建筑专业最核心的强规 |
+| GB 55037-2022 | 建筑防火通用规范 | 2023-06-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_770016.html) | 与 GB 50016-2014(2018年版) 并行 |
 | GB 55038-2025 | 住宅项目规范 | 2025-05-01 | [官方发布页](https://www.gov.cn/zhengce/zhengceku/202504/content_7016620.htm) | 住建部公告2025年第39号；废止 GB 50368-2005 及 8 项标准 55 条强条 |
 
 ### 设备与市政（12）
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55009-2021 | 燃气工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761173.html) | - |
-| GB 55010-2021 | 供热工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761189.html) | - |
-| GB 55011-2021 | 城市道路交通工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761190.html) | - |
-| GB 55012-2021 | 生活垃圾处理处置工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761194.html) | - |
-| GB 55013-2021 | 市容环卫工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761195.html) | - |
-| GB 55014-2021 | 园林绿化工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202107/20210715_761193.html) | - |
-| GB 55020-2021 | 建筑给水排水与节水通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762458.html) | - |
-| GB 55024-2022 | 建筑电气与智能化通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765632.html) | - |
-| GB 55026-2022 | 城市给水工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765626.html) | - |
-| GB 55027-2022 | 城乡排水工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765619.html) | - |
-| GB 55029-2022 | 安全防范工程通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765630.html) | - |
-| GB 55036-2022 | 消防设施通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202208/20220824_767704.html) | - |
+| GB 55009-2021 | 燃气工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761173.html) | - |
+| GB 55010-2021 | 供热工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761189.html) | - |
+| GB 55011-2021 | 城市道路交通工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761190.html) | - |
+| GB 55012-2021 | 生活垃圾处理处置工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761194.html) | - |
+| GB 55013-2021 | 市容环卫工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761195.html) | - |
+| GB 55014-2021 | 园林绿化工程项目规范 | 2022-01-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761193.html) | - |
+| GB 55020-2021 | 建筑给水排水与节水通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762458.html) | - |
+| GB 55024-2022 | 建筑电气与智能化通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765632.html) | - |
+| GB 55026-2022 | 城市给水工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765626.html) | - |
+| GB 55027-2022 | 城乡排水工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765619.html) | - |
+| GB 55029-2022 | 安全防范工程通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765630.html) | - |
+| GB 55036-2022 | 消防设施通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_767704.html) | - |
 
 ### 施工与安全（3）
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55023-2022 | 施工脚手架通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765631.html) | - |
-| GB 55032-2022 | 建筑与市政工程施工质量控制通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202208/20220825_767714.html) | - |
-| GB 55034-2022 | 建筑与市政施工现场安全卫生与职业健康通用规范 | 2023-06-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202211/20221117_768953.html) | - |
+| GB 55023-2022 | 施工脚手架通用规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765631.html) | - |
+| GB 55032-2022 | 建筑与市政工程施工质量控制通用规范 | 2023-03-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_767714.html) | - |
+| GB 55034-2022 | 建筑与市政施工现场安全卫生与职业健康通用规范 | 2023-06-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_768953.html) | - |
 
 ### 既有建筑（2）
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55021-2021 | 既有建筑鉴定与加固通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762453.html) | - |
-| GB 55022-2021 | 既有建筑维护与改造通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202110/20211013_762457.html) | - |
+| GB 55021-2021 | 既有建筑鉴定与加固通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762453.html) | - |
+| GB 55022-2021 | 既有建筑维护与改造通用规范 | 2022-04-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762457.html) | - |
 
 ### 专项工程（3）
 
 | 编号 | 名称 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|
-| GB 55028-2022 | 特殊设施工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202204/20220412_765617.html) | - |
-| GB 55033-2022 | 城市轨道交通工程项目规范 | - | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202208/20220825_767715.html) | 实施日期待核实 |
-| GB 55035-2023 | 城乡历史文化保护利用项目规范 | 2023-12-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefilelib/202306/20230605_772515.html) | - |
+| GB 55028-2022 | 特殊设施工程项目规范 | 2022-10-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765617.html) | - |
+| GB 55033-2022 | 城市轨道交通工程项目规范 | - | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_767715.html) | 实施日期待核实 |
+| GB 55035-2023 | 城乡历史文化保护利用项目规范 | 2023-12-01 | [官方发布页](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_772515.html) | - |
 
 > 强制规范的官方电子版由住房城乡建设部官网随发布公告提供，可免费下载。
 > 注意：国家标准全文公开系统**不收录**食品安全、环境保护、**工程建设**三类标准，
@@ -150,40 +150,40 @@
 
 | 编号 | 名称 | 分类 | 实施日期 | 官方链接 | 备注 |
 |---|---|---|---|---|---|
-| GB 50009-2012 | 建筑结构荷载规范 | 结构 | 2012-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 相关强条已由 GB 55001-2021 废止 |
-| GB 50010-2010(2015年版) | 混凝土结构设计规范 | 结构 | 2011-07-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 相关强条已由 GB 55008-2021 废止 |
-| GB 50011-2010(2016年版) | 建筑抗震设计规范 | 结构 | 2010-12-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 相关强条已由 GB 55002-2021 废止 |
-| GB 50015-2019 | 建筑给水排水设计标准 | 设备与市政 | 2020-03-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50016-2014(2018年版) | 建筑设计防火规范 | 建筑 | 2015-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 部分条文因 GB 55037-2022 废止 |
-| GB 50033-2013 | 建筑采光设计标准 | 建筑 | 2013-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 4.0.1 已被 GB 55038-2025 废止 |
-| GB 50034-2024 | 建筑照明设计标准 | 设备与市政 | 2024-11-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50037-2013 | 建筑地面设计规范 | 建筑 | 2014-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50038-2005 | 人民防空地下室设计规范 | 专项工程 | 2006-03-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50057-2010 | 建筑物防雷设计规范 | 设备与市政 | 2011-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50067-2014 | 汽车库、修车库、停车场设计防火规范 | 建筑 | 2015-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50084-2017 | 自动喷水灭火系统设计规范 | 设备与市政 | 2018-01-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50096-2011 | 住宅设计规范 | 建筑 | 2012-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 55 条强条已被 GB 55038-2025 废止 |
-| GB 50098-2009 | 人民防空工程设计防火规范 | 专项工程 | 2010-07-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50116-2013 | 火灾自动报警系统设计规范 | 设备与市政 | 2014-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50118-2010 | 民用建筑隔声设计规范 | 建筑 | 2011-06-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 4.2.1/4.2.2/4.2.5 已被 GB 55038-2025 废止 |
-| GB 50176-2016 | 民用建筑热工设计规范 | 建筑 | 2017-04-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50189-2015 | 公共建筑节能设计标准 | 建筑 | 2015-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50222-2017 | 建筑内部装修设计防火规范 | 建筑 | 2018-04-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50325-2020 | 民用建筑工程室内环境污染控制标准 | 建筑 | 2020-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50345-2012 | 屋面工程技术规范 | 建筑 | 2012-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50352-2019 | 民用建筑设计统一标准 | 建筑 | 2019-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50693-2011 | 坡屋面工程技术规范 | 建筑 | 2012-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50736-2012 | 民用建筑供暖通风与空气调节设计规范 | 设备与市政 | 2012-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 50763-2012 | 无障碍设计规范 | 建筑 | 2012-09-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 与 GB 55019-2021 并行 |
-| GB 50974-2014 | 消防给水及消火栓系统技术规范 | 设备与市政 | 2014-10-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 51251-2017 | 建筑防烟排烟系统技术标准 | 设备与市政 | 2018-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 51309-2018 | 消防应急照明和疏散指示系统技术标准 | 设备与市政 | 2019-03-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB 51348-2019 | 民用建筑电气设计标准 | 设备与市政 | 2020-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB/T 50001-2017 | 房屋建筑制图统一标准 | 制图 | 2018-05-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB/T 50103-2010 | 总图制图标准 | 制图 | 2011-03-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB/T 50104-2010 | 建筑制图标准 | 制图 | 2011-03-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
-| GB/T 50353-2013 | 建筑工程建筑面积计算规范 | 建筑 | 2014-07-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | 报建面积计算依据 |
-| GB/T 50378-2019 | 绿色建筑评价标准 | 建筑 | 2019-08-01 | [国家标准全文公开系统](https://openstd.samr.gov.cn/bzgk/gb/) | - |
+| GB 50009-2012 | 建筑结构荷载规范 | 结构 | 2012-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_210754.html) | 相关强条已由 GB 55001-2021 废止 |
+| GB 50015-2019 | 建筑给水排水设计标准 | 设备与市政 | 2020-03-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html) | - |
+| GB 50016-2014(2018年版) | 建筑设计防火规范 | 建筑 | 2015-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224333.html) | 部分条文因 GB 55037-2022 废止 |
+| GB 50033-2013 | 建筑采光设计标准 | 建筑 | 2013-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224720.html) | 4.0.1 已被 GB 55038-2025 废止 |
+| GB 50037-2013 | 建筑地面设计规范 | 建筑 | 2014-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224845.html) | - |
+| GB 50038-2005 | 人民防空地下室设计规范 | 专项工程 | 2006-03-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 住建部现行 CMS 未检索到原发布公告页（2023 年有局部修订，官网未发布公告） |
+| GB 50057-2010 | 建筑物防雷设计规范 | 设备与市政 | 2011-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2011/art_17339_202151.html) | - |
+| GB 50067-2014 | 汽车库、修车库、停车场设计防火规范 | 建筑 | 2015-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224265.html) | - |
+| GB 50084-2017 | 自动喷水灭火系统设计规范 | 设备与市政 | 2018-01-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2017/art_17339_233407.html) | - |
+| GB 50096-2011 | 住宅设计规范 | 建筑 | 2012-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2011/art_17339_206878.html) | 55 条强条已被 GB 55038-2025 废止 |
+| GB 50098-2009 | 人民防空工程设计防火规范 | 专项工程 | 2010-07-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 住建部现行 CMS 未检索到原发布公告页 |
+| GB 50116-2013 | 火灾自动报警系统设计规范 | 设备与市政 | 2014-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224820.html) | - |
+| GB 50118-2010 | 民用建筑隔声设计规范 | 建筑 | 2011-06-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 4.2.1/4.2.2/4.2.5 强制性条文已由 GB 55038-2025《住宅项目规范》废止；原发布公告页未检索到 |
+| GB 50176-2016 | 民用建筑热工设计规范 | 建筑 | 2017-04-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2017/art_17339_230579.html) | - |
+| GB 50189-2015 | 公共建筑节能设计标准 | 建筑 | 2015-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224011.html) | - |
+| GB 50222-2017 | 建筑内部装修设计防火规范 | 建筑 | 2018-04-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_236695.html) | - |
+| GB 50325-2020 | 民用建筑工程室内环境污染控制标准 | 建筑 | 2020-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2020/art_17339_245708.html) | - |
+| GB 50345-2012 | 屋面工程技术规范 | 建筑 | 2012-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_210744.html) | - |
+| GB 50352-2019 | 民用建筑设计统一标准 | 建筑 | 2019-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240715.html) | - |
+| GB 50693-2011 | 坡屋面工程技术规范 | 建筑 | 2012-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2011/art_17339_207965.html) | - |
+| GB 50736-2012 | 民用建筑供暖通风与空气调节设计规范 | 设备与市政 | 2012-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_209265.html) | - |
+| GB 50763-2012 | 无障碍设计规范 | 建筑 | 2012-09-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_209758.html) | 与 GB 55019-2021 并行 |
+| GB 50974-2014 | 消防给水及消火栓系统技术规范 | 设备与市政 | 2014-10-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 原发布公告页未检索到；全部强制性条文已由 GB 55036-2022《消防设施通用规范》废止 |
+| GB 51251-2017 | 建筑防烟排烟系统技术标准 | 设备与市政 | 2018-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240707.html) | - |
+| GB 51309-2018 | 消防应急照明和疏散指示系统技术标准 | 设备与市政 | 2019-03-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_239607.html) | - |
+| GB 51348-2019 | 民用建筑电气设计标准 | 设备与市政 | 2020-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2020/art_17339_247248.html) | - |
+| GB/T 50001-2017 | 房屋建筑制图统一标准 | 制图 | 2018-05-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html) | - |
+| GB/T 50010-2010 | 混凝土结构设计标准 | 结构 | 2011-07-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_778180.html) | 2024-08-01 局部修订：更名《混凝土结构设计标准》、改编号为 GB/T 50010-2010（住建部公告 2024 年第 62 号），原编号 GB 50010-2010；相关强条已由 GB 55008-2021 废止 |
+| GB/T 50011-2010 | 建筑抗震设计标准 | 结构 | 2010-12-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_778179.html) | 2024-08-01 局部修订：更名《建筑抗震设计标准》、改编号为 GB/T 50011-2010（住建部公告 2024 年第 61 号），原编号 GB 50011-2010；相关强条已由 GB 55002-2021 废止 |
+| GB/T 50034-2024 | 建筑照明设计标准 | 设备与市政 | 2024-11-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_777466.html) | 官方公告编号为 GB/T 50034-2024，原文写作 GB |
+| GB/T 50103-2010 | 总图制图标准 | 制图 | 2011-03-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 住建部现行 CMS 未检索到原发布公告页 |
+| GB/T 50104-2010 | 建筑制图标准 | 制图 | 2011-03-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) | 住建部现行 CMS 未检索到原发布公告页 |
+| GB/T 50353-2013 | 建筑工程建筑面积计算规范 | 建筑 | 2014-07-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224960.html) | 报建面积计算依据 |
+| GB/T 50378-2019 | 绿色建筑评价标准 | 建筑 | 2019-08-01 | [国家标准全文公开系统](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_240717.html) | - |
 
 ---
 
@@ -191,17 +191,17 @@
 
 | 编号 | 名称 | 分类 | 实施日期 | 官方链接 |
 |---|---|---|---|---|
-| JGJ 1-2014 | 装配式混凝土结构技术规程 | 结构 | 2014-10-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 100-2015 | 车库建筑设计规范 | 建筑 | 2015-12-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 102-2003 | 玻璃幕墙工程技术规范 | 建筑 | 2004-01-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 113-2015 | 建筑玻璃应用技术规程 | 建筑 | 2016-04-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 214-2010 | 铝合金门窗工程技术规范 | 建筑 | 2011-03-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 230-2010 | 倒置式屋面工程技术规程 | 建筑 | 2011-10-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 3-2010 | 高层建筑混凝土结构技术规程 | 结构 | 2011-10-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 36-2016 | 宿舍建筑设计规范 | 建筑 | 2017-06-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 39-2016(2019年版) | 托儿所、幼儿园建筑设计规范 | 建筑 | 2016-11-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ 48-2014 | 商店建筑设计规范 | 建筑 | 2015-03-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
-| JGJ/T 67-2019 | 办公建筑设计标准 | 建筑 | 2020-06-01 | [国家工程建设标准化信息网](https://www.ccsn.org.cn/) |
+| JGJ 1-2014 | 装配式混凝土结构技术规程 | 结构 | 2014-10-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2020/art_17339_244041.html) |
+| JGJ 100-2015 | 车库建筑设计规范 | 建筑 | 2015-12-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224048.html) |
+| JGJ 102-2003 | 玻璃幕墙工程技术规范 | 建筑 | 2004-01-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2006/art_17339_155736.html) |
+| JGJ 113-2015 | 建筑玻璃应用技术规程 | 建筑 | 2016-04-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_225292.html) |
+| JGJ 214-2010 | 铝合金门窗工程技术规范 | 建筑 | 2011-03-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) |
+| JGJ 230-2010 | 倒置式屋面工程技术规程 | 建筑 | 2011-10-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2011/art_17339_201983.html) |
+| JGJ 3-2010 | 高层建筑混凝土结构技术规程 | 结构 | 2011-10-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/index.html) |
+| JGJ 36-2016 | 宿舍建筑设计规范 | 建筑 | 2017-06-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2017/art_17339_231189.html) |
+| JGJ 39-2016(2019年版) | 托儿所、幼儿园建筑设计规范 | 建筑 | 2016-11-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2016/art_17339_227480.html) |
+| JGJ 48-2014 | 商店建筑设计规范 | 建筑 | 2015-03-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224190.html) |
+| JGJ/T 67-2019 | 办公建筑设计标准 | 建筑 | 2020-06-01 | [国家工程建设标准化信息网](https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_244786.html) |
 
 ---
 
@@ -233,6 +233,7 @@ standards-index/
 ├── .gitattributes             换行符策略（仓库内统一 LF）
 ├── .gitignore                 生成产物排除规则
 ├── build_index.py             索引生成器（零第三方依赖）
+├── check_links.py             官方链接巡检工具（零第三方依赖）
 ├── data/
 │   └── standards.csv          ★ 单一数据源，改这里就够了
 └── 〔以下为生成产物，不入库，跑脚本即重建〕
@@ -273,6 +274,35 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 改 `data/standards.csv` → 跑 `python build_index.py` → 提交。
 三处产出（README 表格 / Obsidian 笔记 / Excel CSV）会自动保持同步。
 
+### 定期巡检链接
+
+政府网站改版频繁，链接会静默失效（返回 404 但没人发现）。
+`check_links.py` 逐个访问并检查页面内容是否确实对应该标准：
+
+```bash
+python check_links.py              # 巡检全部 83 条
+python check_links.py --limit 10   # 快速自检
+python check_links.py --json out.json
+```
+
+存在异常链接时退出码为 1，可直接接进 CI：
+
+```yaml
+# .github/workflows/link-check.yml
+on:
+  schedule: [{cron: '0 1 * * 1'}]   # 每周一 09:00 (UTC+8)
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python check_links.py
+```
+
+> 巡检判定口径：**仅返回 200 不算通过**，还要求页面标题或正文确实含该标准编号/名称。
+> 那种「200 但跳到栏目首页」的链接对使用者没有价值，会被标为「可疑」单独列出。
+
 ### 作为 Obsidian 笔记库
 
 先跑一次 `python build_index.py` 生成 `obsidian/`，再把该目录整体复制进 vault，即可获得：
@@ -292,7 +322,7 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 | 编号、名称 | 住建部发布公告 / 国标委公告 | 官方公告原文 |
 | 实施日期 | 发布公告 | 公告正文；同日批次发布的标准实施日期通常一致 |
 | 现行/废止 | 最新公告的废止清单 | 新强规实施时会在公告中列明废止的标准与条文 |
-| 官方链接 | 住建部官网发布页 | 链接可能因官网改版失效，失效时用编号在 mohurd.gov.cn 站内检索 |
+| 官方链接 | 住建部官网发布页 | 见下节；全部链接已逐条联网验证 |
 
 **已知待核实项**：GB 55033-2022《城市轨道交通工程项目规范》的实施日期在公开资料中未获确证，
 表中留空。GB 55026/55027 的实施日期按住建部同期公告批次整理，正式的引用前请以官方公告为准。
@@ -300,6 +330,56 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 **一个重要提示**：工程建设标准体系处于持续重构期（全文强制性规范替代分散强条），
 标准之间的废止/替代关系比标准本身更容易出错。用于正式设计文件前，
 请在国家工程建设标准化信息网核对最新状态。
+
+---
+
+## 八、关于官方链接：一次真实的链接失效排查
+
+本仓库的官方链接全部指向住建部官网的**标准发布公告页**（公告页附标准全文 PDF）。
+初次建库时曾指向「国家标准全文公开系统」，后经核查发现该系统**不收录工程建设类标准**：
+
+```
+openstd 站内检索  GB 5749  →  count = 1   ✓ 收录（非工程建设类）
+openstd 站内检索  GB 50352 →  count = 0   ✗ 不收录（工程建设类）
+openstd 站内检索  GB 50016 →  count = 0   ✗ 不收录（工程建设类）
+```
+
+> 住房和城乡建设部主管的工程建设标准，与市场监管总局主管的一般国家标准走的是两套体系。
+> 全文公开系统的排除范围里明确包含工程建设类。
+
+### 住建部 CMS 改版后的 URL 规律
+
+住建部官网在 2024 年前后更换了内容管理系统，**文档 ID 不变、路径前缀全变**：
+
+```
+旧（2024 年前，现全部 404）
+  /gongkai/zhengce/zhengcefilelib/{YYYYMM}/{YYYYMMDD}_{文档ID}.html
+
+新（现行有效）
+  /gongkai/zc/wjk/art/{YYYY}/art_17339_{文档ID}.html
+```
+
+其中 `{YYYY}` 取旧路径前四位，栏目前缀固定为 `art_17339_`。
+**知道文档 ID 就能拼出新链接** —— 文档 ID 在第三方转载页的「来源」一行里往往还留着旧格式 URL。
+
+### 两条容易搞错的事实
+
+**1. 部分标准在 2024 年局部修订时改了编号和名称**（强制性 GB → 推荐性 GB/T）：
+
+| 原编号 / 名称 | 现编号 / 名称 | 生效 | 依据 |
+|---|---|---|---|
+| GB 50011-2010《建筑抗震设计规范》 | **GB/T 50011-2010《建筑抗震设计标准》** | 2024-08-01 | 住建部公告 2024 年第 61 号 |
+| GB 50010-2010《混凝土结构设计规范》 | **GB/T 50010-2010《混凝土结构设计标准》** | 2024-08-01 | 住建部公告 2024 年第 62 号 |
+
+**2. 本站不用「某某标准 2024 版」这类传言做数据源。**
+排查过程中遇到网上流传的「GB 50974-2024《消防给水及消火栓系统技术规范》」，
+经核对住建部官方公告**并无此标准**（GB 50974-2014 现行有效），未予采信。
+
+### 尚缺深链的条目
+
+有 8 条标准的原发布公告页在住建部现行 CMS 中检索不到（多为 2010 年前后发布、
+公告未随改版迁移）。这些条目的链接降级为住建部文件库栏目入口，
+并在「备注」列注明原因。**宁可给栏目入口，也不给一条点进去 404 的假链接。**
 
 ---
 
