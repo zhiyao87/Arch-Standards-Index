@@ -56,6 +56,7 @@ import zlib
 BASE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(BASE, "data", "standards.csv")
 SH_LOCAL = os.path.join(BASE, "data", "sh_local.tsv")
+SH_NOTICES = os.path.join(BASE, "data", "sh_notices.tsv")
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
@@ -129,6 +130,22 @@ def title_of(html):
     return ""
 
 
+def is_spa(html):
+    """判断是否为「前端渲染空壳页」。
+
+    上海市统一政策发布平台的详情页（shanghai.gov.cn/zhengce/detail?businessId=…）
+    是纯 JS 渲染：HTTP 200，但原始 HTML 只有 4 KB 空壳、20 个 <script>，
+    正文一个字都没有。用 urllib 抓必然「内容未命中」—— 那是**误报**，不是死链。
+    2026-09-11 实测：批准通知的发布页里 220/369 条（60%）都是这种页。
+    同样的坑在住建部栏目页上也存在（见本文件顶部说明）。
+    """
+    if html.count("<script") < 5:
+        return False
+    body = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", html)
+    text = re.sub(r"<[^>]+>", " ", body)
+    return len(re.sub(r"\s+", " ", text).strip()) < 300
+
+
 def judge(row, code, html, ctype=""):
     """返回 (等级, 说明)。等级：ok / warn / bad / limited"""
     if code in LIMITED:
@@ -142,12 +159,20 @@ def judge(row, code, html, ctype=""):
     ttl = title_of(html)
     if not html.strip():
         return "bad", "空响应"
+    # 前端渲染页：200 但 urllib 拿不到正文，无法自动核验，交人工（不算失效）
+    if is_spa(html):
+        return "limited", "HTTP 200（前端渲染页，正文需浏览器加载｜%s）" % ttl[:30]
     blob = flat(html[:30000])
-    no, name = flat(row["编号"]), flat(row["名称"])
+    # 批准通知没有编号时（新批准、现行标准栏目未收录），只能靠标准名比对；
+    # 两个都没有则无从判定，标 warn 交人工 —— 不要当成失效。
+    no = flat(row.get("编号"))
+    name = flat(row.get("名称") or row.get("标准名"))
     if no and no in blob:
         return "ok", "命中编号｜%s" % ttl[:40]
     if name and (name in blob or name[:6] in blob):
         return "ok", "命中名称｜%s" % ttl[:40]
+    if not no and not name:
+        return "warn", "200 但无编号/名称可比对（页面：%s）" % ttl[:40]
     return "warn", "200 但内容未命中（页面：%s）" % ttl[:40]
 
 
@@ -158,17 +183,33 @@ def main():
     ap.add_argument("--strict", action="store_true",
                     help="把 warn（200 但内容不匹配）也视为失败")
     ap.add_argument("--json", help="把结果写入 JSON 文件")
+    ap.add_argument("--only", default="all",
+                    choices=["all", "standards", "sh_local", "sh_notices"],
+                    help="只巡检某个数据源（默认 all）")
     args = ap.parse_args()
 
-    # 覆盖两个数据源：国标/行标（standards.csv）与上海工程建设规范（sh_local.tsv）。
-    # 后者链接指向 PDF 直链，含中文文件名，正好检验 percent-encoding 是否生效。
+    # 覆盖三个数据源：国标/行标（standards.csv）、上海现行规范（sh_local.tsv）、
+    # 规范批准通知（sh_notices.tsv）。后两者链接指向 PDF 直链，含中文文件名，
+    # 正好检验 percent-encoding 是否生效。
+    # 批准通知每条贡献两条链接：发布页（官方链接）与标准全文 PDF（全文PDF）。
     rows = []
-    with open(SRC, encoding="utf-8-sig", newline="") as f:
-        rows += [r for r in csv.DictReader(f) if (r.get("官方链接") or "").strip()]
-    if os.path.exists(SH_LOCAL):
+    if args.only in ("all", "standards"):
+        with open(SRC, encoding="utf-8-sig", newline="") as f:
+            rows += [r for r in csv.DictReader(f) if (r.get("官方链接") or "").strip()]
+    if args.only in ("all", "sh_local") and os.path.exists(SH_LOCAL):
         with open(SH_LOCAL, encoding="utf-8-sig", newline="") as f:
             rows += [r for r in csv.DictReader(f, delimiter="\t")
                      if (r.get("官方链接") or "").strip()]
+    if args.only in ("all", "sh_notices") and os.path.exists(SH_NOTICES):
+        with open(SH_NOTICES, encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f, delimiter="\t"):
+                # 字段名对齐到 judge() 期望的「编号 / 名称」，缺失留空即可
+                base = {"编号": (r.get("编号") or "").strip(),
+                        "名称": (r.get("标准名") or "").strip()}
+                for col in ("官方链接", "全文PDF"):
+                    u = (r.get(col) or "").strip()
+                    if u:
+                        rows.append(dict(base, 官方链接=u))
     if args.limit:
         rows = rows[:args.limit]
 
@@ -182,9 +223,12 @@ def main():
         level, msg = judge(r, code, html, ctype)
         counts[level] += 1
         mark = {"ok": "✔", "warn": "!", "bad": "✘", "limited": "·"}[level]
-        print("%s %-22s %s" % (mark, r["编号"], msg))
+        # 批准通知常没有编号，退化到标准名，免得整列空白对不上行
+        label = (r.get("编号") or "").strip() or (r.get("名称") or "")[:20]
+        name = (r.get("名称") or r.get("标准名") or "").strip()
+        print("%s %-22s %s" % (mark, label, msg))
         sys.stdout.flush()
-        results.append({"编号": r["编号"], "名称": r["名称"],
+        results.append({"编号": label, "名称": name,
                         "链接": url, "状态": code,
                         "等级": level, "说明": msg})
         time.sleep(args.sleep)
