@@ -1,0 +1,47 @@
+许可证 / License
+================
+
+本仓库采取双许可，代码与数据分别适用不同条款。
+
+1. 生成脚本（build_index.py）
+   MIT License
+
+   Copyright (c) 2026
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+2. 索引数据与文档（data/、obsidian/、README.md）
+   CC BY 4.0
+   https://creativecommons.org/licenses/by/4.0/
+
+   标准编号、名称、实施日期等属于事实性信息，不构成受著作权法保护的独创性表达。
+   本仓库对这些信息的整理成果以 CC BY 4.0 释出，署名即可自由使用。
+
+3. 标准正文
+   不在本仓库范围内。标准文本的著作权归各自权利人所有：
+
+   - 推荐性国家标准：著作权人 国家标准化管理委员会；
+     中国质量标准出版传媒有限公司享有专有出版权与信息网络传播权
+   - 行业标准、地方标准：归各自发布单位
+   - 标准图集：归中国建筑标准设计研究院等编制单位
+
+   强制性国家标准（非采标）依《著作权法》第 5 条不适用著作权法，
+   但仍受《标准出版管理办法》所确立的出版秩序约束。
+
+   本仓库不包含任何标准正文，亦不提供正文的转载或镜像。
