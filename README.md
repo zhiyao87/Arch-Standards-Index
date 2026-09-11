@@ -68,10 +68,11 @@ JGJ 行业标准普遍含强制性条文（如 JGJ 100-2015 的第 3.1.7、4.2.8
 
 | 项目 | 数量 |
 |---|---|
-| 收录标准总数 | 83 |
+| 收录标准总数 | 143 |
 | 强制性工程建设规范（GB 55001—55038） | 38 |
 | 其他国家标准（GB 强制性 / GB/T 推荐性） | 34 |
 | 行业标准（JGJ，均为推荐性） | 11 |
+| 上海工程建设规范（DGJ08 / DG/TJ08，均为推荐性） | 60 |
 
 按版权分层统计：
 
@@ -79,13 +80,13 @@ JGJ 行业标准普遍含强制性条文（如 JGJ 100-2015 的第 3.1.7、4.2.8
 |---|---|---|
 | A | 不受著作权法保护（强制性国家标准） | 64 |
 | B | 受著作权法保护（推荐性国家标准 GB/T） | 8 |
-| C | 受著作权法保护（行业标准 JGJ） | 11 |
+| C | 受著作权法保护（行业标准 JGJ、上海工程建设规范） | 71 |
 
-数据来源：住房和城乡建设部官网发布公告，
+数据来源：住房和城乡建设部官网发布公告、上海市住房和城乡建设管理委员会「现行标准」栏目，
 以及实际施工图设计说明中的现行规范引用表。详见文末「数据来源与核实方法」。
 
 > 本仓库不引用「国家标准全文公开系统」作为数据源 —— 该系统**不收录工程建设类标准**，
-> 用它核对建筑国标会得到空结果。原因见第八节。
+> 用它核对建筑国标会得到空结果。原因见第九节。
 
 ---
 
@@ -240,7 +241,118 @@ JGJ 行业标准普遍含强制性条文（如 JGJ 100-2015 的第 3.1.7、4.2.8
 
 ---
 
-## 四、官方免费查阅渠道
+## 四、上海工程建设规范
+
+以 **DGJ08 / DG/TJ08** 编号，由**上海市住房和城乡建设管理委员会**发布。
+共收录 **60 条**，按用途分组。
+
+与国标的关系：上海工程建设规范补充本地要求，与国标**并行有效、不替代国标**；
+两者的具体适用关系以各自总则条文为准。做上海项目时，国标与本市工程建设规范需一并核对。
+
+> ⚠️ **地方标准同样是推荐性标准、受著作权法保护**（《标准化法》第 2 条）。
+> 上海市住建委在「现行标准」栏目里把它们一律标注为「推荐性标准」，
+> 这与部分标准含「强制性条文」的事实并不矛盾 —— 与 JGJ 的情形相同。
+
+下表链接指向上海市住建委官网提供的**标准全文 PDF 直链**（官网自行公开）。
+
+### 设计基础（14）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-2201-2016 | 建筑信息模型应用标准 | 2016-09-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/2201%E5%BB%BA%E7%AD%91%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8%E6%A0%87%E5%87%86%20%281%2920161114141911.pdf) |
+| DG/TJ08-2242-2017 | 民用建筑外窗应用技术规程 | 2017-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/6d/6d198277bb364e98957a475220a6a503/adc14207c18fc2f09e9e4e9d035fc6db.pdf) |
+| DG/TJ08-2314-2020 | 建筑同层排水系统应用技术标准 | 2020-09-01 | [PDF](https://zjw.sh.gov.cn/cmsres/e7/e757656ee0764aeab2403dbb9e190ac4/8af604bfc3af1bd19f92f56452022fef.pdf) |
+| DG/TJ08-2328-2020 | 建筑风环境气象参数标准 | 2021-01-01 | [PDF](https://zjw.sh.gov.cn/cmsres/e9/e9e4ff8001aa472488d5e686a15f666d/e175a4e064dd34daa97f7de67ef2081e.pdf) |
+| DG/TJ08-56-2019 | 建筑幕墙工程技术标准 | 2020-04-01 | [PDF](https://zjw.sh.gov.cn/cmsres/b3/b3d6916257f842788fa66c58051ac236/4b19832227aeacf7362e0df617db3429.pdf) |
+| DG/TJ08-7-2021 | 建筑工程交通设计及停车库（场）设置标准 | 2022-01-01 | [PDF](https://zjw.sh.gov.cn/cmsres/07/079dc87c4eaa4571b5dd3f71aa729d75/e13124893c83a8b098989d0602b7ec42.pdf) |
+| DG/TJ08-88-2021 | 建筑防排烟系统设计标准 | 2021-09-01 | [PDF](https://zjw.sh.gov.cn/cmsres/c5/c560c9556c8f4fa499b5e4d3a60fafbc/011ab52ef7c9d5a9c63fc8eb6a160954.pdf) |
+| DG/TJ08-9-2023 | 建筑抗震设计标准 | 2023-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/00/007f14f3eb2341ffb407844dde0ce4b2/bda7bdd4527111d51b62a369226f9ef6.pdf) |
+| DGJ08-107-2015 | 公共建筑节能设计标准 | 2016-05-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/107%E5%85%AC%E5%85%B1%E5%BB%BA%E7%AD%91%E8%8A%82%E8%83%BD%E8%AE%BE%E8%AE%A1%E6%A0%87%E5%87%8620160504104711.pdf) |
+| DGJ08-11-2018 | 地基基础设计标准 | 2019-08-01 | [PDF](https://zjw.sh.gov.cn/cmsres/61/61ce445b195840b6aecf936275a1dd4d/725ffd47336d7a09823f78f641ada513.pdf) |
+| DGJ08-20-2019 | 住宅设计标准 | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/0a/0a2db6d53a7f419ead2ad76584ada1fc/3884665e2cbca772db93c30985f3773f.pdf) |
+| DGJ08-205-2015 | 居住建筑节能设计标准 | 2016-05-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/205%E5%B1%85%E4%BD%8F%E5%BB%BA%E7%AD%91%E8%8A%82%E8%83%BD%E8%AE%BE%E8%AE%A1%E6%A0%87%E5%87%8620160504104950.pdf) |
+| DGJ08-2139-2021 | 住宅建筑绿色设计标准 | 2021-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/f3/f393b7748b084324aa98ec37a68c423d/12894cd15fc07589507a6b6450115fb8.pdf) |
+| DGJ08-2143-2021 | 公共建筑绿色设计标准 | 2021-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/fd/fd2c40e843e1417f8cad4134754dcd7e/e5abd7ff3043946324c0ce84654a6dc1.pdf) |
+
+### 住宅与住区（12）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-12-2004 | 普通中小学校建设标准 | 2004-08-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/90%E6%99%AE%E9%80%9A%E4%B8%AD%E5%B0%8F%E5%AD%A6%E6%A0%A1%E5%BB%BA%E8%AE%BE%E6%A0%87%E5%87%86.pdf) |
+| DG/TJ08-2029-2021 | 多高层钢结构住宅技术标准 | 2021-11-01 | [PDF](https://zjw.sh.gov.cn/cmsres/f6/f640dd264cae40b3a0ef2dcf0b09d2da/aef768257b850cd075073ca76fa53729.pdf) |
+| DG/TJ08-2178-2021 | 全装修住宅室内装修设计标准 | 2021-09-01 | [PDF](https://zjw.sh.gov.cn/cmsres/dc/dcc9ba7ed16b4982837fb054b4e1c731/554b47c0aad67ad1687d9fdd9bab7114.pdf) |
+| DG/TJ08-2243-2017 | 市属高校建筑规划面积标准 | 2017-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/9d/9d9ff1add895470aaa35cb32e6572544/905b9ecf0d7f31426dedc87d3908a19d.pdf) |
+| DG/TJ08-2247-2017 | 绿色养老建筑评价标准 | 2018-04-01 | [PDF](https://zjw.sh.gov.cn/cmsres/46/46d23c2ec812473ba9bcaa9b5083adc6/99c0f3ab316e17a1e0eea39cf76741cb.pdf) |
+| DG/TJ08-2291-2019 | 保障性住房设计标准 | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/a1/a111fc7db226432ab42b496e9c1d4cca/3ef876c06ca695b7a4e389de3b5dc37d.pdf) |
+| DG/TJ08-2291B-2022 | 保障性住房设计标准（保障性租赁住房新建分册） | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/66/6607c6540a4341c8abac739c61614d45/5fdbcdcfad61d017184148ec4788f83d.pdf) |
+| DG/TJ08-2291C-2022 | 保障性住房设计标准（保障性租赁住房改建分册） | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/ed/edc21b3ab20445b3b90cb1920f6e8e02/f92a6c8516ba3cf5ac4bb499b00fe3e1.pdf) |
+| DG/TJ08-2374-2022 | 既有住宅小区宜居改造技术标准 | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/1e/1e0e8af6338a480c9ee6c2d2a47a6fb9/739b080dab1795ee362482b3744655e5.pdf) |
+| DG/TJ08-2381-2021 | 既有多层住宅加装电梯技术标准 | 2021-11-01 | [PDF](https://zjw.sh.gov.cn/cmsres/dc/dce996d5e6a34c80b7a6cf8794e32c59/823588f97918eb943e5e7bd4006e25ef.pdf) |
+| DG/TJ08-45-2005 | 普通幼儿园建设标准 | 2005-08-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/112%E6%99%AE%E9%80%9A%E5%B9%BC%E5%84%BF%E5%9B%AD%E5%BB%BA%E8%AE%BE%E6%A0%87%E5%87%86.pdf) |
+| DG/TJ08-82-2020 | 养老设施建筑设计标准 | 2020-09-01 | [PDF](https://zjw.sh.gov.cn/cmsres/2d/2df36620720842649f6fc2ea6c8363a4/a3426086ca29845f2aec787038ddbf7c.pdf) |
+
+### 消防与安全（10）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-2177-2015 | 建筑工程消防施工质量验收规范 | 2015-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/d8/d885dcb869ac44a096e5949560837bf8/cfe684998aa924467eb4a38ebef934f9.pdf) |
+| DG/TJ08-2188-2015 | 应急避难场所设计规范 | 2016-05-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/2188%E5%BA%94%E6%80%A5%E9%81%BF%E9%9A%BE%E5%9C%BA%E6%89%80%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%8320160620145016.pdf) |
+| DG/TJ08-2343-2020 | 大型物流建筑消防设计标准 | 2021-07-01 | [PDF](https://zjw.sh.gov.cn/cmsres/c0/c027665a23a24cf3a2ca4700b97c4062/95a6e6af71d970d4a218d96e2cb0771b.pdf) |
+| DG/TJ08-2408-2022 | 城市综合体消防技术标准 | 2023-02-01 | [PDF](https://zjw.sh.gov.cn/cmsres/a5/a5875f7a69e04e81b67105359f7326e6/23cbc0d0ccef9c194b4ecbe219f94b98.pdf) |
+| DG/TJ08-2409-2022 | 老旧住宅小区消防改造技术标准 | 2023-01-01 | [PDF](https://zjw.sh.gov.cn/cmsres/a3/a33d0fd6ca9f48ea836ba10acd2f36f0/44a5c7afbe6fda4be3f3485d6d07e62d.pdf) |
+| DG/TJ08-2410-2022 | 文物和优秀历史建筑消防技术标准 | 2023-02-01 | [PDF](https://zjw.sh.gov.cn/cmsres/77/7793080f3bbd4857ac900944a7089a25/62a7bbdff0dbff79e1215a742768782c.pdf) |
+| DGJ08-2048-2016 | 民用建筑电气防火设计规程 | 2017-05-01 | [PDF](https://zjw.sh.gov.cn/cmsres/91/91f35df45e584410bff66e7bffae4126/ddafbe17da733aa3257436101c3a895d.pdf) |
+| DGJ08-2164-2015 | 民用建筑外保温材料防火技术规程 | 2015-10-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/15%E6%B0%91%E7%94%A8%E5%BB%BA%E7%AD%91%E5%A4%96%E5%A4%96%E4%BF%9D%E6%B8%A9%E6%9D%90%E6%96%99%E9%98%B2%E7%81%AB%E6%8A%80%E6%9C%AF%E8%A7%84%E7%A8%8B20151028141231.pdf) |
+| DGJ08-2173-2016 | 展览建筑及布展设计防火规程 | 2016-06-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/2173%E5%B1%95%E8%A7%88%E5%BB%BA%E7%AD%91%E5%8F%8A%E5%B8%83%E5%B1%95%E8%AE%BE%E8%AE%A1%E9%98%B2%E7%81%AB%E8%A7%84%E7%A8%8B20160620144800.pdf) |
+| DGJ08-94-2007 | 民用建筑水灭火系统设计规程 | 2008-03-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/185%E6%B0%91%E7%94%A8%E5%BB%BA%E7%AD%91%E6%B0%B4%E7%81%AD%E7%81%AB%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%A7%84%E7%A8%8B.pdf) |
+
+### 改造与历史建筑（6）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-108-2014 | 优秀历史建筑保护修缮技术规程 | 2015-01-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/369%E4%BC%98%E7%A7%80%E5%8E%86%E5%8F%B2%E5%BB%BA%E7%AD%91%E4%BF%9D%E6%8A%A4%E4%BF%AE%E7%BC%AE%E6%8A%80%E6%9C%AF%E8%A7%84%E7%A8%8B.pdf) |
+| DG/TJ08-2136-2022 | 既有居住建筑节能改造技术标准 | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/9d/9d0121dd2c8f49c185007841cf728028/5c9c7bbb38857eca1825aefc3fc2d6ed.pdf) |
+| DG/TJ08-2137-2022 | 既有公共建筑节能改造技术标准 | 2022-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/f9/f91e64892592436fa6967bf71697596a/f7d3dd2cc6748416e26f3db295774d13.pdf) |
+| DG/TJ08-2235-2017 | 既有地下建筑改扩建技术规范 | 2017-10-01 | [PDF](https://zjw.sh.gov.cn/cmsres/33/33839bbdabcd464c98214ce74f93ec09/2881aa35f892192e2851967ba9bb25b9.pdf) |
+| DG/TJ08-2338-2020 | 既有建筑绿色改造技术标准 | 2021-04-01 | [PDF](https://zjw.sh.gov.cn/cmsres/a9/a946d2b3a85d48e5a2d17bd7b2234a02/70ccda2ba34ccf56c7d32a5af0b9496f.pdf) |
+| DG/TJ08-2403-2022 | 优秀历史建筑抗震鉴定与加固标准 | 2023-03-01 | [PDF](https://zjw.sh.gov.cn/cmsres/4f/4fb3ec5fc9024f47ae041e43f3fad1a8/238bd5734252270c052189327c18ec71.pdf) |
+
+### 装配式与外围护（7）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-2071-2016 | 装配整体式混凝土居住建筑设计规程 | 2016-12-01 | [PDF](https://zjw.sh.gov.cn/cmsres/c7/c748dde00f604e60b924e9ca1015f1cc/8d59ee1f07557bfd53653a9d57b32fca.pdf) |
+| DG/TJ08-2154-2014 | 装配整体式混凝土公共建筑设计规程 | 2015-03-01 | [PDF](https://zjw.sh.gov.cn/shsd/userfiles/375%E8%A3%85%E9%85%8D%E6%95%B4%E4%BD%93%E5%BC%8F%E6%B7%B7%E5%87%9D%E5%9C%9F%E5%85%AC%E5%85%B1%E5%BB%BA%E7%AD%91%E8%AE%BE%E8%AE%A1%E8%A7%84%E7%A8%8B.pdf) |
+| DG/TJ08-2158-2023 | 预制混凝土夹心保温外墙应用技术标准 | 2023-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/29/29e38d3f7bbf446e88d5275c8f2141da/289ddd9349c90bf3bfc07807fef1a96b.pdf) |
+| DG/TJ08-2198-2019 | 装配式建筑评价标准 | 2020-04-01 | [PDF](https://zjw.sh.gov.cn/cmsres/0c/0c9a1892e8574f2ab134289b77a97b74/9bea1200559d4a1084a892d5de134576.pdf) |
+| DG/TJ08-2365-2021 | 建筑浮筑楼板保温隔声系统应用技术标准 | 2021-11-01 | [PDF](https://zjw.sh.gov.cn/cmsres/0c/0cb1488e48df44d382e7788141c428a8/5e8c8e12f84c3f1ec354d02273ffac77.pdf) |
+| DG/TJ08-2433A-2023 | 外墙保温一体化系统应用技术标准（预制混凝土反打保温外墙） | 2023-10-01 | [PDF](https://zjw.sh.gov.cn/cmsres/3f/3f4174510125472b80b2b9a38d78c7dc/14d171af33d6c13792e1931753d2f180.pdf) |
+| DG/TJ08-2433B-2023 | 外墙保温一体化系统应用技术标准（现浇混凝土反打保温外墙） | 2023-10-01 | [PDF](https://zjw.sh.gov.cn/cmsres/29/2979c3dd6dea4e518260f7208af7782c/253268745570edcb956be53d40e71d7b.pdf) |
+
+### 结构与抗震（7）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-19-2018 | 建筑索结构技术标准 | 2019-5-1 | [PDF](https://zjw.sh.gov.cn/cmsres/ca/ca2703fe7c1841f1913a1860b8fd9106/c0e3c4c0a1e862ca46a1aac1c6d78214.pdf) |
+| DG/TJ08-2192-2016 | 工程木结构设计规范 | 2016-05-01 | [PDF](https://zjw.sh.gov.cn/cmsres/fd/fd3d5b5394eb4c53b981f8b14efb69bd/d0f15238da028a5edbfdd78099c30a11.pdf) |
+| DG/TJ08-2326-2020 | 建筑消能减震及隔震技术标准 | 2021-01-01 | [PDF](https://zjw.sh.gov.cn/cmsres/a5/a5fbac6a6968459c999bb10a0c41ec8c/72879c07b5b1f3b4a423ff2d04dc65fd.pdf) |
+| DG/TJ08-2350-2021 | 大跨度建筑空间结构抗连续倒塌设计标准 | 2021-07-01 | [PDF](https://zjw.sh.gov.cn/cmsres/37/37ae0e21afef46b68a1ea1212a93f5e2/24d3a2a3507a7e499531e79cfab7b0c6.pdf) |
+| DG/TJ08-52-2020 | 空间格构结构技术标准 | 2021-03-01 | [PDF](https://zjw.sh.gov.cn/cmsres/f0/f0ec9042c30e49ffbb7960f9b9390434/ad6c8918c81aad0f59bafb90f5e526bd.pdf) |
+| DGJ08-69-2015 | 预应力混凝土结构设计规程 | 2016-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/89/8925525b534e4e63a43c9ab106d0ad8b/b4ae1e5348525166d0d3bf33e4c61d4b.pdf) |
+| DGJ08-81-2021 | 现有建筑抗震鉴定与加固标准 | 2021-08-01 | [PDF](https://zjw.sh.gov.cn/cmsres/70/70c1a5c3608141f7b12e22dda36f702a/0eb4335ec853a054ba763ada4704072e.pdf) |
+
+### 绿色建筑与专项（4）
+
+| 编号 | 名称 | 实施日期 | 官方全文 |
+|---|---|---|---|
+| DG/TJ08-2040-2021 | 公共建筑绿色及节能工程智能化技术标准 | 2021-08-01 | [PDF](https://zjw.sh.gov.cn/cmsres/70/70ca03ac464c4de3bb12d5f4c1dddfac/5e3c2f581dbf5fd21c1461aa3ed87945.pdf) |
+| DG/TJ08-2090-2020 | 绿色建筑评价标准 | 2020-07-01 | [PDF](https://zjw.sh.gov.cn/cmsres/9c/9c07f1b2aedd46d9a2b865cfe33c265d/8d7281ca46c8641107273e40fd4f2d1b.pdf) |
+| DG/TJ08-2263-2018 | 城市轨道交通上盖建筑设计标准 | 2018-09-01 | [PDF](https://zjw.sh.gov.cn/cmsres/42/42232d71f65f4811adbea918cfcbffca/b2dfc8e9e9a21ec3bc13814b894a044e.pdf) |
+| DG/TJ08-60-2017 | 机械式停车库（场）设计规程 | 2017-06-01 | [PDF](https://zjw.sh.gov.cn/cmsres/06/064a780a63994502902246e26b503c3d/8f0e7bbe4deec86f4be2170c443a8c68.pdf) |
+
+---
+
+## 五、官方免费查阅渠道
 
 | 渠道 | 网址 | 覆盖范围 | 能否下载 |
 |---|---|---|---|
@@ -248,14 +360,14 @@ JGJ 行业标准普遍含强制性条文（如 JGJ 100-2015 的第 3.1.7、4.2.8
 | 全国标准信息公共服务平台 | https://std.samr.gov.cn/ | 国标/行标/地标/团标题录 | 部分可在线读 |
 | 住房和城乡建设部 | https://www.mohurd.gov.cn/ | **工程建设标准（含 38 本强规）** | ✅ 强规可免费下载 PDF |
 | 国家工程建设标准化信息网 | https://www.ccsn.org.cn/ | 工程建设国标 + 行标 | 依标准而定 |
-| 上海市住房和城乡建设管理委员会 | https://zjw.sh.gov.cn/ | 上海地方标准 DGJ / DB31 | 依标准而定 |
+| 上海市住房和城乡建设管理委员会 | https://zjw.sh.gov.cn/xxbz/index.html | **上海工程建设规范（DGJ08 / DG/TJ08）** | ✅ 现行标准栏目提供全文 PDF 直链 |
 
 > 提醒：官方提供免费下载 ≠ 你可以再分发。免费下载解决的是「获取」问题，
 > 不解决「传播」问题。二者的法律边界在《著作权法》第 10 条。
 
 ---
 
-## 五、目录结构
+## 六、目录结构
 
 仓库只跟踪**数据源 + 生成器 + 说明书**。由脚本产出的内容一律不入库，
 克隆后跑一次 `build_index.py` 即可完整重建 —— 这样仓库里永远不会出现
@@ -268,14 +380,17 @@ Arch-Standards-Index/
 ├── .gitattributes             换行符策略（仓库内统一 LF）
 ├── .gitignore                 生成产物排除规则
 ├── build_index.py             索引生成器（零第三方依赖）
+├── build_sh_local.py          上海工程建设规范：提取 + 链接验证（零第三方依赖）
 ├── check_links.py             官方链接巡检工具（零第三方依赖）
 ├── data/
-│   └── standards.csv          ★ 单一数据源，改这里就够了
+│   ├── standards.csv          ★ 数据源一：国标 / 行标（手工维护）
+│   ├── sh_std_raw.json        上海住建委官网原始抓取结果（489 条，只读缓存）
+│   └── sh_local.tsv           ★ 数据源二：上海工程建设规范（由脚本生成）
 └── 〔以下为生成产物，不入库，跑脚本即重建〕
     ├── data/standards_excel.csv   Excel 友好版（UTF-8 BOM）
     └── obsidian/
         ├── 标准索引.md             Obsidian 主索引页
-        └── standards/              每条标准一个笔记（83 个）
+        └── standards/              每条标准一个笔记（143 个）
 ```
 
 > README 本身也是脚本产物，但它被特意保留入库 —— GitHub 打开仓库即渲染它，
@@ -283,7 +398,7 @@ Arch-Standards-Index/
 
 ---
 
-## 六、怎么用
+## 七、怎么用
 
 ### 克隆本仓库
 
@@ -306,7 +421,18 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 
 ### 日常维护
 
-改 `data/standards.csv` → 跑 `python build_index.py` → 提交。
+两个数据源，各改各的，改完跑一次生成器即可：
+
+```bash
+python build_sh_local.py --verify   # ① 上海数据：重新抓取 + 验证链接（可选）
+python build_index.py               # ② 合并两个源，生成全部产物
+```
+
+| 数据源 | 维护方式 |
+|---|---|
+| `data/standards.csv` | 国标 / 行标，手工编辑后跑 `build_index.py` |
+| `data/sh_local.tsv` | 上海工程建设规范，由 `build_sh_local.py` 从官网生成，**不要手改** |
+
 三处产出（README 表格 / Obsidian 笔记 / Excel CSV）会自动保持同步。
 
 ### 定期巡检链接
@@ -315,7 +441,7 @@ python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 `check_links.py` 逐个访问并检查页面内容是否确实对应该标准：
 
 ```bash
-python check_links.py              # 巡检全部 83 条
+python check_links.py              # 巡检全部 143 条
 python check_links.py --limit 10   # 快速自检
 python check_links.py --strict     # 把「可疑」也视为失败，人工复核用
 python check_links.py --json out.json
@@ -353,14 +479,26 @@ jobs:
 
 ---
 
-## 七、数据来源与核实方法
+## 八、数据来源与核实方法
 
 | 字段 | 来源 | 核实方式 |
 |---|---|---|
-| 编号、名称 | 住建部发布公告 / 国标委公告 | 官方公告原文 |
-| 实施日期 | 发布公告 | 公告正文；同日批次发布的标准实施日期通常一致 |
+| 编号、名称（国标 / 行标） | 住建部发布公告 / 国标委公告 | 官方公告原文 |
+| 编号、名称（上海） | 上海市住建委「现行标准」栏目 | 栏目内嵌数据，由 `build_sh_local.py` 解析 |
+| 实施日期 | 发布公告 / 上海栏目 | 公告正文；同日批次发布的标准实施日期通常一致 |
 | 现行/废止 | 最新公告的废止清单 | 新强规实施时会在公告中列明废止的标准与条文 |
-| 官方链接 | 住建部官网发布页 | 见下节；全部链接已逐条联网验证 |
+| 官方链接 | 住建部官网发布页 / 上海市住建委官网 | 见下节；全部链接已逐条联网验证 |
+
+**上海数据的抓取方式**：上海市住建委「现行标准」栏目（`zjw.sh.gov.cn/xxbz/`）
+的列表由前端渲染，页面内嵌完整 JSON 数据（字段 `bh` 编号 / `mc` 名称 / `pz` 批准 /
+`ss` 实施 / `url` 全文 PDF）。`build_sh_local.py` 直接解析该数据，
+无需逐条翻页，也不会因页面改版而失效得太突然。原始抓取结果存于
+`data/sh_std_raw.json`（489 条），从中挑选建筑设计常用条目生成 `data/sh_local.tsv`。
+
+> ⚠️ **该栏目名为「现行标准」，但实测混有新老版本**（例如《住宅设计标准》同时存在
+> DGJ08-20-2019 的两条记录、《建筑抗震设计规程》DGJ08-9-2013 与其替代者
+> DG/TJ08-9-2023 并存）。本库只收录**实施日期最新**的版本，
+> 引用前请仍以官方公告为准。
 
 **已知待核实项**：GB 55033-2022《城市轨道交通工程项目规范》的实施日期在公开资料中未获确证，
 表中留空。GB 55026/55027 的实施日期按住建部同期公告批次整理，正式的引用前请以官方公告为准。
@@ -371,7 +509,7 @@ jobs:
 
 ---
 
-## 八、关于官方链接：一次真实的链接失效排查
+## 九、关于官方链接：一次真实的链接失效排查
 
 本仓库的官方链接全部指向住建部官网的**标准发布公告页**（公告页附标准全文 PDF）。
 初次建库时曾指向「国家标准全文公开系统」，后经核查发现该系统**不收录工程建设类标准**：

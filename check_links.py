@@ -49,11 +49,13 @@ import ssl
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import zlib
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(BASE, "data", "standards.csv")
+SH_LOCAL = os.path.join(BASE, "data", "sh_local.tsv")
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
@@ -65,9 +67,27 @@ CTX.verify_mode = ssl.CERT_NONE
 LIMITED = {403, 429, 503}       # 视为「站点限制」而非「链接失效」
 
 
+def encode_url(u):
+    """把 URL 路径里的非 ASCII 字符转成 percent-encoding。
+
+    坑（2026-09-11 实测踩到）：urllib 不会像浏览器那样自动编码，
+    直接请求含中文文件名的 URL 会抛
+        UnicodeEncodeError: 'ascii' codec can't encode characters
+    而 curl / 浏览器都自动处理 —— 于是出现「curl 测是 200、urllib 测全挂」
+    的假象，极易误判为链接失效。上海住建委官网有大量中文文件名 PDF。
+    """
+    p = urllib.parse.urlparse(u)
+    path = urllib.parse.quote(p.path, safe="/%")
+    return urllib.parse.urlunparse((p.scheme, p.netloc, path, p.query, "", ""))
+
+
 def fetch(url, timeout=25):
-    """返回 (状态码, 页面文本)；网络层异常返回 (0, '')。"""
-    req = urllib.request.Request(url, headers={
+    """返回 (状态码, 页面文本, content-type)；网络层异常返回 (0, '', '')。
+
+    PDF 只读前 8 KB —— 上海住建委的标准直链是 5–10 MB 的 PDF，
+    全读一遍纯属浪费；只要拿到 200 和 content-type 就够了。
+    """
+    req = urllib.request.Request(encode_url(url), headers={
         "User-Agent": UA,
         "Accept-Encoding": "gzip, deflate",
         "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
@@ -75,17 +95,24 @@ def fetch(url, timeout=25):
     })
     try:
         with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
-            raw = r.read()
+            ctype = (r.headers.get("Content-Type") or "").lower()
+            raw = r.read(8192) if "pdf" in ctype else r.read()
             enc = (r.headers.get("Content-Encoding") or "").lower()
-            if "gzip" in enc:
-                raw = gzip.decompress(raw)
-            elif "deflate" in enc:
-                raw = zlib.decompress(raw, -zlib.MAX_WBITS)
-            return r.status, raw.decode("utf-8", "replace")
+            if "gzip" in enc and raw:
+                try:
+                    raw = gzip.decompress(raw)
+                except Exception:
+                    pass
+            elif "deflate" in enc and raw:
+                try:
+                    raw = zlib.decompress(raw, -zlib.MAX_WBITS)
+                except Exception:
+                    pass
+            return r.status, raw.decode("utf-8", "replace"), ctype
     except urllib.error.HTTPError as e:
-        return e.code, ""
+        return e.code, "", ""
     except Exception:
-        return 0, ""
+        return 0, "", ""
 
 
 def flat(s):
@@ -102,12 +129,16 @@ def title_of(html):
     return ""
 
 
-def judge(row, code, html):
+def judge(row, code, html, ctype=""):
     """返回 (等级, 说明)。等级：ok / warn / bad / limited"""
     if code in LIMITED:
         return "limited", "HTTP %s（站点限制，非链接失效）" % code
     if code != 200:
         return "bad", "HTTP %s" % code
+    # 直接指向标准全文 PDF 的链接（上海住建委官网）：能下载即为有效。
+    # 这类 PDF 部分是扫描件，没有文本层，硬要核对标准号会误报。
+    if "pdf" in ctype:
+        return "ok", "PDF 可下载"
     ttl = title_of(html)
     if not html.strip():
         return "bad", "空响应"
@@ -129,8 +160,15 @@ def main():
     ap.add_argument("--json", help="把结果写入 JSON 文件")
     args = ap.parse_args()
 
+    # 覆盖两个数据源：国标/行标（standards.csv）与上海工程建设规范（sh_local.tsv）。
+    # 后者链接指向 PDF 直链，含中文文件名，正好检验 percent-encoding 是否生效。
+    rows = []
     with open(SRC, encoding="utf-8-sig", newline="") as f:
-        rows = list(csv.DictReader(f))
+        rows += [r for r in csv.DictReader(f) if (r.get("官方链接") or "").strip()]
+    if os.path.exists(SH_LOCAL):
+        with open(SH_LOCAL, encoding="utf-8-sig", newline="") as f:
+            rows += [r for r in csv.DictReader(f, delimiter="\t")
+                     if (r.get("官方链接") or "").strip()]
     if args.limit:
         rows = rows[:args.limit]
 
@@ -140,8 +178,8 @@ def main():
     print("巡检 %d 条链接\n" % len(rows))
     for r in rows:
         url = (r.get("官方链接") or "").strip()
-        code, html = fetch(url)
-        level, msg = judge(r, code, html)
+        code, html, ctype = fetch(url)
+        level, msg = judge(r, code, html, ctype)
         counts[level] += 1
         mark = {"ok": "✔", "warn": "!", "bad": "✘", "limited": "·"}[level]
         print("%s %-22s %s" % (mark, r["编号"], msg))

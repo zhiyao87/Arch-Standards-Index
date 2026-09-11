@@ -17,6 +17,7 @@
 import csv
 import os
 import re
+import urllib.parse
 from collections import OrderedDict
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +29,21 @@ OBS_DIR = os.path.join(BASE, "obsidian")
 OBS_INDEX = os.path.join(OBS_DIR, "标准索引.md")
 OBS_STD = os.path.join(OBS_DIR, "standards")
 EXCEL_CSV = os.path.join(BASE, "data", "standards_excel.csv")
+SH_LOCAL = os.path.join(BASE, "data", "sh_local.tsv")   # 上海工程建设规范，由 build_sh_local.py 从市住建委官网生成
+
+# 上海数据源只有「分组」概念，映射到本库统一的「分类」体系。
+# 分组信息仍保留在 row["分组"] 里，供 README 分节展示。
+SH_CATEGORY = {
+    "设计基础": "建筑",
+    "住宅与住区": "建筑",
+    "消防与安全": "专项工程",
+    "改造与历史建筑": "既有建筑",
+    "装配式与外围护": "建筑",
+    "结构与抗震": "结构",
+    "绿色建筑与专项": "专项工程",
+}
+SH_GROUP_ORDER = ["设计基础", "住宅与住区", "消防与安全", "改造与历史建筑",
+                  "装配式与外围护", "结构与抗震", "绿色建筑与专项"]
 
 CATEGORY_ORDER = ["结构", "建筑", "设备与市政", "施工与安全", "既有建筑", "专项工程", "制图"]
 
@@ -36,6 +52,38 @@ TAG_BY_COPYRIGHT = {
     "B-受著作权保护": "版权/受保护-国标",
     "C-受著作权保护": "版权/受保护-行标",
 }
+
+
+def load_sh_local():
+    """读上海工程建设规范数据源（data/sh_local.tsv）。
+
+    该文件由 build_sh_local.py 从上海市住建委「现行标准」栏目生成，
+    官方数据里没有「分类 / 属性 / 版权分层」这几个字段，在这里补齐：
+    上海将 DGJ08 / DG/TJ08 一律标为推荐性标准（栏目内 0 条标注"强制性"），
+    依《标准化法》第 2 条地方标准均为推荐性，故版权分层统一为 C。
+    """
+    if not os.path.exists(SH_LOCAL):
+        return []
+    out = []
+    with open(SH_LOCAL, encoding="utf-8-sig", newline="") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            no = (r.get("编号") or "").strip()
+            if not no:
+                continue
+            group = (r.get("分组") or "").strip()
+            out.append({
+                "编号": no,
+                "名称": (r.get("名称") or "").strip(),
+                "分类": SH_CATEGORY.get(group, "建筑"),
+                "属性": "推荐性",
+                "实施日期": (r.get("实施日期") or "").strip(),
+                "状态": "现行",
+                "官方链接": (r.get("官方链接") or "").strip(),
+                "版权分层": "C-受著作权保护",
+                "备注": "上海市工程建设规范（市住建委现行标准栏目收录）",
+                "分组": group,
+            })
+    return out
 
 
 def load_rows():
@@ -52,7 +100,9 @@ def load_rows():
                 clean[k.strip()] = (v or "").strip()
             if clean.get("编号"):
                 rows.append(clean)
-    return fields, rows
+    # 上海数据作为独立源追加，不写进 standards.csv ——
+    # 它可由脚本从官网重新抓取更新，无需手工维护。
+    return fields, rows + load_sh_local()
 
 
 def safe_filename(row):
@@ -74,9 +124,30 @@ def is_gb550(row):
     return re.match(r"^GB\s*55\d", (row.get("编号") or "").strip()) is not None
 
 
+def is_sh_local(row):
+    """上海工程建设规范：DGJ08 / DG/TJ08 系列（上海市住建委发布）。"""
+    no = (row.get("编号") or "").strip().upper()
+    return no.startswith("DGJ08") or no.startswith("DG/TJ08")
+
+
 def link_md(url, label="官方发布页"):
+    """生成 markdown 链接，URL 做 percent-encoding。
+
+    为什么必须编码：markdown 的 `[文字](目标)` 在**空格处会截断目标**，
+    括号也会让解析器提前收尾。上海住建委官网有 11 条 PDF 用了中文文件名，
+    其中一条还带空格与括号：
+        .../2201建筑信息模型应用标准 (1)20161114141911.pdf
+    不编码的话，读者点进去就是断链 —— 这类问题在仓库页面里看不出来，
+    只有真正点击才会暴露。
+
+    safe 里保留 URL 结构字符，但**不含括号**：括号必须编码成 %28/%29，
+    否则会破坏 markdown 语法。保留 % 是为了不二次编码已编码的部分。
+    """
     u = (url or "").strip()
-    return "[%s](%s)" % (label, u) if u else "-"
+    if not u:
+        return "-"
+    safe = urllib.parse.quote(u, safe=":/?#[]@!$&'*+,;=%~.-_")
+    return "[%s](%s)" % (label, safe)
 
 
 # ---------------------------------------------------------------- README
@@ -86,7 +157,8 @@ def build_readme(rows):
     # 分组按「编号体系」而非「属性」——属性和版权分层是逐条的法律判断，
     # 放在表格列里呈现；章节划分按标准体系走，读者才能对得上。
     mand = [r for r in rows if is_gb550(r)]                      # 强制性工程建设规范
-    rec = [r for r in rows if not is_gb550(r)]                   # 其余
+    sh = [r for r in rows if is_sh_local(r)]                     # 上海工程建设规范
+    rec = [r for r in rows if not is_gb550(r) and not is_sh_local(r)]   # 其余
     gb = [r for r in rec if r["编号"].startswith("GB")]           # 其他国家标准
     jg = [r for r in rec if r["编号"].startswith("JGJ")]          # 行业标准
 
@@ -171,6 +243,7 @@ def build_readme(rows):
     w("| 强制性工程建设规范（GB 55001—55038） | %d |" % len(mand))
     w("| 其他国家标准（GB 强制性 / GB/T 推荐性） | %d |" % len(gb))
     w("| 行业标准（JGJ，均为推荐性） | %d |" % len(jg))
+    w("| 上海工程建设规范（DGJ08 / DG/TJ08，均为推荐性） | %d |" % len(sh))
     w("")
     w("按版权分层统计：")
     w("")
@@ -178,13 +251,13 @@ def build_readme(rows):
     w("|---|---|---|")
     w("| A | 不受著作权法保护（强制性国家标准） | %d |" % len([r for r in rows if r["版权分层"].startswith("A")]))
     w("| B | 受著作权法保护（推荐性国家标准 GB/T） | %d |" % len([r for r in rows if r["版权分层"].startswith("B")]))
-    w("| C | 受著作权法保护（行业标准 JGJ） | %d |" % len([r for r in rows if r["版权分层"].startswith("C")]))
+    w("| C | 受著作权法保护（行业标准 JGJ、上海工程建设规范） | %d |" % len([r for r in rows if r["版权分层"].startswith("C")]))
     w("")
-    w("数据来源：住房和城乡建设部官网发布公告，")
+    w("数据来源：住房和城乡建设部官网发布公告、上海市住房和城乡建设管理委员会「现行标准」栏目，")
     w("以及实际施工图设计说明中的现行规范引用表。详见文末「数据来源与核实方法」。")
     w("")
     w("> 本仓库不引用「国家标准全文公开系统」作为数据源 —— 该系统**不收录工程建设类标准**，")
-    w("> 用它核对建筑国标会得到空结果。原因见第八节。")
+    w("> 用它核对建筑国标会得到空结果。原因见第九节。")
     w("")
     w("---")
     w("")
@@ -249,7 +322,35 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 四、官方免费查阅渠道")
+    w("## 四、上海工程建设规范")
+    w("")
+    w("以 **DGJ08 / DG/TJ08** 编号，由**上海市住房和城乡建设管理委员会**发布。")
+    w("共收录 **%d 条**，按用途分组。" % len(sh))
+    w("")
+    w("与国标的关系：上海工程建设规范补充本地要求，与国标**并行有效、不替代国标**；")
+    w("两者的具体适用关系以各自总则条文为准。做上海项目时，国标与本市工程建设规范需一并核对。")
+    w("")
+    w("> ⚠️ **地方标准同样是推荐性标准、受著作权法保护**（《标准化法》第 2 条）。")
+    w("> 上海市住建委在「现行标准」栏目里把它们一律标注为「推荐性标准」，")
+    w("> 这与部分标准含「强制性条文」的事实并不矛盾 —— 与 JGJ 的情形相同。")
+    w("")
+    w("下表链接指向上海市住建委官网提供的**标准全文 PDF 直链**（官网自行公开）。")
+    w("")
+    for g in SH_GROUP_ORDER:
+        items = [r for r in sh if r.get("分组") == g]
+        if not items:
+            continue
+        w("### %s（%d）" % (g, len(items)))
+        w("")
+        w("| 编号 | 名称 | 实施日期 | 官方全文 |")
+        w("|---|---|---|---|")
+        for r in sorted(items, key=lambda x: x["编号"]):
+            w("| %s | %s | %s | %s |" % (
+                r["编号"], r["名称"], cell(r["实施日期"]), link_md(r["官方链接"], "PDF")))
+        w("")
+    w("---")
+    w("")
+    w("## 五、官方免费查阅渠道")
     w("")
     w("| 渠道 | 网址 | 覆盖范围 | 能否下载 |")
     w("|---|---|---|---|")
@@ -257,14 +358,14 @@ def build_readme(rows):
     w("| 全国标准信息公共服务平台 | https://std.samr.gov.cn/ | 国标/行标/地标/团标题录 | 部分可在线读 |")
     w("| 住房和城乡建设部 | https://www.mohurd.gov.cn/ | **工程建设标准（含 38 本强规）** | ✅ 强规可免费下载 PDF |")
     w("| 国家工程建设标准化信息网 | https://www.ccsn.org.cn/ | 工程建设国标 + 行标 | 依标准而定 |")
-    w("| 上海市住房和城乡建设管理委员会 | https://zjw.sh.gov.cn/ | 上海地方标准 DGJ / DB31 | 依标准而定 |")
+    w("| 上海市住房和城乡建设管理委员会 | https://zjw.sh.gov.cn/xxbz/index.html | **上海工程建设规范（DGJ08 / DG/TJ08）** | ✅ 现行标准栏目提供全文 PDF 直链 |")
     w("")
     w("> 提醒：官方提供免费下载 ≠ 你可以再分发。免费下载解决的是「获取」问题，")
     w("> 不解决「传播」问题。二者的法律边界在《著作权法》第 10 条。")
     w("")
     w("---")
     w("")
-    w("## 五、目录结构")
+    w("## 六、目录结构")
     w("")
     w("仓库只跟踪**数据源 + 生成器 + 说明书**。由脚本产出的内容一律不入库，")
     w("克隆后跑一次 `build_index.py` 即可完整重建 —— 这样仓库里永远不会出现")
@@ -277,14 +378,17 @@ def build_readme(rows):
     w("├── .gitattributes             换行符策略（仓库内统一 LF）")
     w("├── .gitignore                 生成产物排除规则")
     w("├── build_index.py             索引生成器（零第三方依赖）")
+    w("├── build_sh_local.py          上海工程建设规范：提取 + 链接验证（零第三方依赖）")
     w("├── check_links.py             官方链接巡检工具（零第三方依赖）")
     w("├── data/")
-    w("│   └── standards.csv          ★ 单一数据源，改这里就够了")
+    w("│   ├── standards.csv          ★ 数据源一：国标 / 行标（手工维护）")
+    w("│   ├── sh_std_raw.json        上海住建委官网原始抓取结果（489 条，只读缓存）")
+    w("│   └── sh_local.tsv           ★ 数据源二：上海工程建设规范（由脚本生成）")
     w("└── 〔以下为生成产物，不入库，跑脚本即重建〕")
     w("    ├── data/standards_excel.csv   Excel 友好版（UTF-8 BOM）")
     w("    └── obsidian/")
     w("        ├── 标准索引.md             Obsidian 主索引页")
-    w("        └── standards/              每条标准一个笔记（83 个）")
+    w("        └── standards/              每条标准一个笔记（%d 个）" % total)
     w("```")
     w("")
     w("> README 本身也是脚本产物，但它被特意保留入库 —— GitHub 打开仓库即渲染它，")
@@ -292,7 +396,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 六、怎么用")
+    w("## 七、怎么用")
     w("")
     w("### 克隆本仓库")
     w("")
@@ -315,7 +419,18 @@ def build_readme(rows):
     w("")
     w("### 日常维护")
     w("")
-    w("改 `data/standards.csv` → 跑 `python build_index.py` → 提交。")
+    w("两个数据源，各改各的，改完跑一次生成器即可：")
+    w("")
+    w("```bash")
+    w("python build_sh_local.py --verify   # ① 上海数据：重新抓取 + 验证链接（可选）")
+    w("python build_index.py               # ② 合并两个源，生成全部产物")
+    w("```")
+    w("")
+    w("| 数据源 | 维护方式 |")
+    w("|---|---|")
+    w("| `data/standards.csv` | 国标 / 行标，手工编辑后跑 `build_index.py` |")
+    w("| `data/sh_local.tsv` | 上海工程建设规范，由 `build_sh_local.py` 从官网生成，**不要手改** |")
+    w("")
     w("三处产出（README 表格 / Obsidian 笔记 / Excel CSV）会自动保持同步。")
     w("")
     w("### 定期巡检链接")
@@ -324,7 +439,7 @@ def build_readme(rows):
     w("`check_links.py` 逐个访问并检查页面内容是否确实对应该标准：")
     w("")
     w("```bash")
-    w("python check_links.py              # 巡检全部 83 条")
+    w("python check_links.py              # 巡检全部 143 条")
     w("python check_links.py --limit 10   # 快速自检")
     w("python check_links.py --strict     # 把「可疑」也视为失败，人工复核用")
     w("python check_links.py --json out.json")
@@ -362,14 +477,26 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 七、数据来源与核实方法")
+    w("## 八、数据来源与核实方法")
     w("")
     w("| 字段 | 来源 | 核实方式 |")
     w("|---|---|---|")
-    w("| 编号、名称 | 住建部发布公告 / 国标委公告 | 官方公告原文 |")
-    w("| 实施日期 | 发布公告 | 公告正文；同日批次发布的标准实施日期通常一致 |")
+    w("| 编号、名称（国标 / 行标） | 住建部发布公告 / 国标委公告 | 官方公告原文 |")
+    w("| 编号、名称（上海） | 上海市住建委「现行标准」栏目 | 栏目内嵌数据，由 `build_sh_local.py` 解析 |")
+    w("| 实施日期 | 发布公告 / 上海栏目 | 公告正文；同日批次发布的标准实施日期通常一致 |")
     w("| 现行/废止 | 最新公告的废止清单 | 新强规实施时会在公告中列明废止的标准与条文 |")
-    w("| 官方链接 | 住建部官网发布页 | 见下节；全部链接已逐条联网验证 |")
+    w("| 官方链接 | 住建部官网发布页 / 上海市住建委官网 | 见下节；全部链接已逐条联网验证 |")
+    w("")
+    w("**上海数据的抓取方式**：上海市住建委「现行标准」栏目（`zjw.sh.gov.cn/xxbz/`）")
+    w("的列表由前端渲染，页面内嵌完整 JSON 数据（字段 `bh` 编号 / `mc` 名称 / `pz` 批准 /")
+    w("`ss` 实施 / `url` 全文 PDF）。`build_sh_local.py` 直接解析该数据，")
+    w("无需逐条翻页，也不会因页面改版而失效得太突然。原始抓取结果存于")
+    w("`data/sh_std_raw.json`（489 条），从中挑选建筑设计常用条目生成 `data/sh_local.tsv`。")
+    w("")
+    w("> ⚠️ **该栏目名为「现行标准」，但实测混有新老版本**（例如《住宅设计标准》同时存在")
+    w("> DGJ08-20-2019 的两条记录、《建筑抗震设计规程》DGJ08-9-2013 与其替代者")
+    w("> DG/TJ08-9-2023 并存）。本库只收录**实施日期最新**的版本，")
+    w("> 引用前请仍以官方公告为准。")
     w("")
     w("**已知待核实项**：GB 55033-2022《城市轨道交通工程项目规范》的实施日期在公开资料中未获确证，")
     w("表中留空。GB 55026/55027 的实施日期按住建部同期公告批次整理，正式的引用前请以官方公告为准。")
@@ -380,7 +507,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 八、关于官方链接：一次真实的链接失效排查")
+    w("## 九、关于官方链接：一次真实的链接失效排查")
     w("")
     w("本仓库的官方链接全部指向住建部官网的**标准发布公告页**（公告页附标准全文 PDF）。")
     w("初次建库时曾指向「国家标准全文公开系统」，后经核查发现该系统**不收录工程建设类标准**：")
@@ -488,6 +615,23 @@ def build_obsidian_index(rows):
     for r in sorted([x for x in rows if x["编号"].startswith("JGJ")], key=lambda x: x["编号"]):
         w("| [[%s]] | %s | %s | %s |" % (safe_filename(r), r["名称"], r["分类"], cell(r["实施日期"])))
     w("")
+    w("## 上海工程建设规范")
+    w("")
+    w("上海市住建委发布的 DGJ08 / DG/TJ08 系列，同属推荐性标准、受著作权法保护。")
+    w("官方全文 PDF 由市住建委「现行标准」栏目提供。")
+    w("")
+    for g in SH_GROUP_ORDER:
+        items = [x for x in rows if is_sh_local(x) and x.get("分组") == g]
+        if not items:
+            continue
+        w("### %s（%d）" % (g, len(items)))
+        w("")
+        w("| 编号 | 名称 | 分类 | 实施日期 |")
+        w("|---|---|---|---|")
+        for r in sorted(items, key=lambda x: x["编号"]):
+            w("| [[%s]] | %s | %s | %s |" % (
+                safe_filename(r), r["名称"], r["分类"], cell(r["实施日期"])))
+        w("")
     w("---")
     w("")
     w("## 按属性筛选")
@@ -598,12 +742,17 @@ def main():
     # 避免 Windows 下 csv 模块默认写 CRLF 造成 Git 反复报换行符警告。
     # 编码仍用 utf-8-sig（带 BOM），Excel 双击打开不乱码。
     with open(EXCEL_CSV, "w", encoding="utf-8-sig", newline="") as f:
-        dw = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
+        # extrasaction="ignore"：上海数据源多带一个「分组」键（仅供 README 分节用），
+        # 不写进 Excel 导出，以保持列结构与 standards.csv 一致。
+        dw = csv.DictWriter(f, fieldnames=fields, lineterminator="\n",
+                            extrasaction="ignore")
         dw.writeheader()
         dw.writerows(rows)
 
     mand = sum(1 for r in rows if is_mandatory(r))
-    print("收录 %d 条（强制 %d / 推荐 %d）" % (len(rows), mand, len(rows) - mand))
+    sh = sum(1 for r in rows if is_sh_local(r))
+    print("收录 %d 条（强制 %d / 推荐 %d；其中上海工程建设规范 %d）"
+          % (len(rows), mand, len(rows) - mand, sh))
     print("生成：README.md")
     print("生成：obsidian/标准索引.md")
     print("生成：obsidian/standards/*.md  （%d 个）" % len(rows))
