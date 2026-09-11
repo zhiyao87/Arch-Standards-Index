@@ -262,7 +262,7 @@ JGJ 行业标准普遍含强制性条文（如 JGJ 100-2015 的第 3.1.7、4.2.8
 「数据源改了、产物忘了重新生成」的不一致状态。
 
 ```
-standards-index/
+Arch-Standards-Index/
 ├── README.md                  本文件（脚本生成；入库，作仓库首页）
 ├── LICENSE                    双许可：脚本 MIT / 数据 CC BY 4.0
 ├── .gitattributes             换行符策略（仓库内统一 LF）
@@ -285,24 +285,24 @@ standards-index/
 
 ## 六、怎么用
 
-### 首次上传到 GitHub
+### 克隆本仓库
 
 ```bash
-git init
-git add .
-git commit -m "init: 建筑标准规范索引库"
-git remote add origin git@github.com:<你的账号>/<仓库名>.git
-git push -u origin main
+git clone https://github.com/zhiyao87/Arch-Standards-Index.git
+cd Arch-Standards-Index
 ```
 
-### 克隆后重建生成产物
+### 重建生成产物
 
 `obsidian/` 与 `data/standards_excel.csv` 不入库，克隆后跑一次生成器即可：
 
 ```bash
-git clone <仓库地址> && cd standards-index
 python build_index.py     # 零依赖，标准库即可，约 1 秒跑完
 ```
+
+> 想建自己的副本？fork 本仓库，或本地 `git init` 后推到你自己的仓库。
+> 记得把 `build_index.py` 顶部的 `TITLE` 与 `REPO` 两个常量改成你的仓库名，
+> 否则下次生成 README 时标题和 clone 地址会被写回本仓库的值。
 
 ### 日常维护
 

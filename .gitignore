@@ -4,7 +4,8 @@
 #  入库原则：只跟踪「数据源 + 生成器 + 说明书」。
 #  由 build_index.py 产出的内容一概不入库，克隆后跑一次即可重建：
 #
-#      git clone <仓库地址> && cd standards-index
+#      git clone https://github.com/zhiyao87/Arch-Standards-Index.git
+#      cd Arch-Standards-Index
 #      python build_index.py
 #
 #  这样处理的好处：仓库里永远不会出现「源数据改了、产物忘了重新生成」
@@ -36,6 +37,17 @@
 # 保留入库，访客无需运行脚本就能看到完整索引表。
 # 若你也希望 README 改为按需生成，取消下面一行的注释：
 # /README.md
+
+
+# ── 一次性排查脚本 ──────────────────────────────────────────────────
+# 建库过程中用于批量修链接、审计属性的一次性工具。它们硬编码了本机绝对路径
+# 并依赖临时 TSV 文件，不可移植，对使用者无价值。沉淀下来的通用方法在
+# check_links.py（已入库）；完整方法论另存于本地技能库。
+/fix_mohurd_links.py
+/reverify_links.py
+/apply_links.py
+/audit_attribute.py
+/reclassify_by_code.py
 
 
 # ── 私有文档 ────────────────────────────────────────────────────────
