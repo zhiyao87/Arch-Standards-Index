@@ -29,7 +29,11 @@ OBS_DIR = os.path.join(BASE, "obsidian")
 OBS_INDEX = os.path.join(OBS_DIR, "标准索引.md")
 OBS_STD = os.path.join(OBS_DIR, "standards")
 EXCEL_CSV = os.path.join(BASE, "data", "standards_excel.csv")
+NOTICE_EXCEL_CSV = os.path.join(BASE, "data", "sh_notices_excel.csv")
+NOTICE_COLS = ["分组", "标准名", "编号", "批准日期", "文号", "发布单位",
+               "官方链接", "全文PDF", "红头PDF", "附件", "备注"]
 SH_LOCAL = os.path.join(BASE, "data", "sh_local.tsv")   # 上海工程建设规范，由 build_sh_local.py 从市住建委官网生成
+SH_NOTICES = os.path.join(BASE, "data", "sh_notices.tsv")  # 上海规范批准/发布通知索引，由 build_sh_notices.py 从 gov_docs.csv 生成
 
 # 上海数据源只有「分组」概念，映射到本库统一的「分类」体系。
 # 分组信息仍保留在 row["分组"] 里，供 README 分节展示。
@@ -44,6 +48,14 @@ SH_CATEGORY = {
 }
 SH_GROUP_ORDER = ["设计基础", "住宅与住区", "消防与安全", "改造与历史建筑",
                   "装配式与外围护", "结构与抗震", "绿色建筑与专项"]
+
+# 批准通知的专业分组（由 build_sh_notices.py 的 GROUPS 常量产出，顺序保持一致）
+NOTICE_GROUP_ORDER = [
+    "建筑与住区", "结构与抗震", "消防与人防", "绿色建筑与节能",
+    "装配式与外围护", "改造与历史建筑", "设备与智能化",
+    "轨道交通与地下工程", "市政与道路", "水务与海绵", "绿化与市容",
+    "勘察与测绘", "施工与质量安全", "规划与不动产", "其他",
+]
 
 CATEGORY_ORDER = ["结构", "建筑", "设备与市政", "施工与安全", "既有建筑", "专项工程", "制图"]
 
@@ -83,6 +95,30 @@ def load_sh_local():
                 "备注": "上海市工程建设规范（市住建委现行标准栏目收录）",
                 "分组": group,
             })
+    return out
+
+
+def load_sh_notices():
+    """读第三个数据源：上海工程建设规范「批准 / 发布通知」索引（data/sh_notices.tsv）。
+
+    与 sh_local.tsv 的区别 —— 两者回答的是不同问题：
+      sh_local.tsv   这本规范**现在有效吗**、全文 PDF 在哪（只收现行）
+      sh_notices.tsv **最近批了什么新规范**、依据哪个文号、通知原件在哪
+
+    后者由 build_sh_notices.py 从 Shanghai-Gov-Docs-Index 的 gov_docs.csv 生成，
+    **不要手改**。返回结构只有「分组 / 标准名 / 编号 / 批准日期 / 文号 / 链接们」，
+    没有「属性 / 版权分层 / 状态」—— 因为批准通知本身是行政文件，
+    不是标准文本，不该混进标准表的版权分层统计里。
+    """
+    if not os.path.exists(SH_NOTICES):
+        return []
+    out = []
+    with open(SH_NOTICES, encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f, delimiter="\t"):
+            name = (r.get("标准名") or "").strip()
+            if not name:
+                continue
+            out.append({k: (v or "").strip() for k, v in r.items() if k})
     return out
 
 
@@ -152,7 +188,8 @@ def link_md(url, label="官方发布页"):
 
 # ---------------------------------------------------------------- README
 
-def build_readme(rows):
+def build_readme(rows, notices=None):
+    notices = notices or []
     total = len(rows)
     # 分组按「编号体系」而非「属性」——属性和版权分层是逐条的法律判断，
     # 放在表格列里呈现；章节划分按标准体系走，读者才能对得上。
@@ -249,6 +286,7 @@ def build_readme(rows):
     w("| 其他国家标准（GB 强制性 / GB/T 推荐性） | %d |" % len(gb))
     w("| 行业标准（JGJ，均为推荐性） | %d |" % len(jg))
     w("| 上海工程建设规范（DGJ08 / DG/TJ08，均为推荐性） | %d |" % len(sh))
+    w("| **上海规范批准 / 发布通知**（另计，见第五节） | %d |" % len(notices))
     w("")
     w("按版权分层统计：")
     w("")
@@ -262,7 +300,7 @@ def build_readme(rows):
     w("以及实际施工图设计说明中的现行规范引用表。详见文末「数据来源与核实方法」。")
     w("")
     w("> 本仓库不引用「国家标准全文公开系统」作为数据源 —— 该系统**不收录工程建设类标准**，")
-    w("> 用它核对建筑国标会得到空结果。原因见第九节。")
+    w("> 用它核对建筑国标会得到空结果。原因见第十节。")
     w("")
     w("---")
     w("")
@@ -355,7 +393,49 @@ def build_readme(rows):
         w("")
     w("---")
     w("")
-    w("## 五、官方免费查阅渠道")
+    w("## 五、上海工程建设规范批准 / 发布通知")
+    w("")
+    w("每一本上海市工程建设规范，都不是凭空出现在「现行标准」栏目里的 —— ")
+    w("它由市住建委发一纸「关于批准《XXX》为上海市工程建设规范的通知」才生效。")
+    w("本节收录的就是这一纸通知，共 **%d 条**。" % len(notices))
+    w("")
+    w("**为什么单列一节**：官网「现行标准」栏目更新比批准动作慢半拍。")
+    w("2026 年新批的那一批（《城市轨道交通地下车站与周边连通工程设计标准》、")
+    w("《桥梁改扩建技术标准》、《钢结构 / 混凝土模块化建筑技术导则》等）在栏目里")
+    w("至今查不到，只能从批准通知看到。想跟踪「最近批了什么」，看这一节；")
+    w("想查「这本规范现在有效吗、全文在哪」，看第四节。")
+    w("")
+    n_hit = sum(1 for r in notices if r.get("编号"))
+    w("| 项目 | 数量 |")
+    w("|---|---|")
+    w("| 通知总数 | %d |" % len(notices))
+    w("| 已能对应上 DGJ08 / DG/TJ08 编号（附全文 PDF） | %d |" % n_hit)
+    w("| 新批准、现行标准栏目尚未收录（暂无编号） | %d |" % (len(notices) - n_hit))
+    w("")
+    w("> 本表只登记**通知的出处**（发布页 / 红头 PDF / 附件原文），不收录标准正文。")
+    w("> 规范全文是 DGJ08 / DG/TJ08 地方标准，依《标准化法》第 2 条属推荐性标准、")
+    w("> **受著作权法保护** —— 有全文 PDF 直链的，链接指向市住建委官网自行公开的原件，")
+    w("> 本仓库不镜像。批准通知本身属行政文件，不受著作权法保护。")
+    w("")
+    for g in NOTICE_GROUP_ORDER:
+        items = [r for r in notices if r.get("分组") == g]
+        if not items:
+            continue
+        w("### %s（%d）" % (g, len(items)))
+        w("")
+        w("| 标准名 | 编号 | 批准日期 | 文号 | 批准通知 | 全文 |")
+        w("|---|---|---|---|---|---|")
+        for r in sorted(items, key=lambda x: (x.get("批准日期") or ""), reverse=True):
+            full = r.get("全文PDF") or r.get("附件") or ""
+            w("| %s | %s | %s | %s | %s | %s |" % (
+                r["标准名"], cell(r.get("编号")), cell(r.get("批准日期")),
+                cell(r.get("文号")),
+                link_md(r.get("官方链接"), "发布页"),
+                link_md(full, "PDF")))
+        w("")
+    w("---")
+    w("")
+    w("## 六、官方免费查阅渠道")
     w("")
     w("| 渠道 | 网址 | 覆盖范围 | 能否下载 |")
     w("|---|---|---|---|")
@@ -371,7 +451,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 六、目录结构")
+    w("## 七、目录结构")
     w("")
     w("仓库只跟踪**数据源 + 生成器 + 说明书**。由脚本产出的内容一律不入库，")
     w("克隆后跑一次 `build_index.py` 即可完整重建 —— 这样仓库里永远不会出现")
@@ -385,13 +465,16 @@ def build_readme(rows):
     w("├── .gitignore                 生成产物排除规则")
     w("├── build_index.py             索引生成器（零第三方依赖）")
     w("├── build_sh_local.py          上海工程建设规范：提取 + 链接验证（零第三方依赖）")
+    w("├── build_sh_notices.py        规范批准通知索引：从 gov_docs.csv 抽取 + 补编号（零第三方依赖）")
     w("├── check_links.py             官方链接巡检工具（零第三方依赖）")
     w("├── data/")
     w("│   ├── standards.csv          ★ 数据源一：国标 / 行标（手工维护）")
     w("│   ├── sh_std_raw.json        上海住建委官网原始抓取结果（489 条，只读缓存）")
-    w("│   └── sh_local.tsv           ★ 数据源二：上海工程建设规范（由脚本生成）")
+    w("│   ├── sh_local.tsv           ★ 数据源二：上海工程建设规范（由脚本生成）")
+    w("│   └── sh_notices.tsv         ★ 数据源三：规范批准 / 发布通知（由脚本生成）")
     w("└── 〔以下为生成产物，不入库，跑脚本即重建〕")
     w("    ├── data/standards_excel.csv   Excel 友好版（UTF-8 BOM）")
+    w("    ├── data/sh_notices_excel.csv  批准通知 Excel 版（UTF-8 BOM，列结构不同于标准表）")
     w("    └── obsidian/")
     w("        ├── 标准索引.md             Obsidian 主索引页")
     w("        └── standards/              每条标准一个笔记（%d 个）" % total)
@@ -402,7 +485,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 七、怎么用")
+    w("## 八、怎么用")
     w("")
     w("### 克隆本仓库")
     w("")
@@ -425,17 +508,20 @@ def build_readme(rows):
     w("")
     w("### 日常维护")
     w("")
-    w("两个数据源，各改各的，改完跑一次生成器即可：")
+    w("三个数据源，各改各的，改完跑一次生成器即可：")
     w("")
     w("```bash")
-    w("python build_sh_local.py --verify   # ① 上海数据：重新抓取 + 验证链接（可选）")
-    w("python build_index.py               # ② 合并两个源，生成全部产物")
+    w("python build_sh_local.py --verify   # ① 上海现行规范：重新抓取 + 验证链接（可选）")
+    w("python build_sh_notices.py --src <gov_docs.csv 路径>   # ② 批准通知：重新抽取（可选）")
+    w("python build_index.py               # ③ 合并三个源，生成全部产物")
     w("```")
     w("")
     w("| 数据源 | 维护方式 |")
     w("|---|---|")
     w("| `data/standards.csv` | 国标 / 行标，手工编辑后跑 `build_index.py` |")
     w("| `data/sh_local.tsv` | 上海工程建设规范，由 `build_sh_local.py` 从官网生成，**不要手改** |")
+    w("| `data/sh_notices.tsv` | 规范批准 / 发布通知，由 `build_sh_notices.py` 从 "
+      "`gov_docs.csv`（配套仓库）生成，**不要手改** |")
     w("")
     w("三处产出（README 表格 / Obsidian 笔记 / Excel CSV）会自动保持同步。")
     w("")
@@ -483,7 +569,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 八、数据来源与核实方法")
+    w("## 九、数据来源与核实方法")
     w("")
     w("| 字段 | 来源 | 核实方式 |")
     w("|---|---|---|")
@@ -492,6 +578,8 @@ def build_readme(rows):
     w("| 实施日期 | 发布公告 / 上海栏目 | 公告正文；同日批次发布的标准实施日期通常一致 |")
     w("| 现行/废止 | 最新公告的废止清单 | 新强规实施时会在公告中列明废止的标准与条文 |")
     w("| 官方链接 | 住建部官网发布页 / 上海市住建委官网 | 见下节；全部链接已逐条联网验证 |")
+    w("| 批准 / 发布通知（上海） | 配套仓库 Shanghai-Gov-Docs-Index 的 `gov_docs.csv` | "
+      "由 `build_sh_notices.py` 抽取；编号与全文 PDF 用 `sh_std_raw.json` 按名称回填 |")
     w("")
     w("**上海数据的抓取方式**：上海市住建委「现行标准」栏目（`zjw.sh.gov.cn/xxbz/`）")
     w("的列表由前端渲染，页面内嵌完整 JSON 数据（字段 `bh` 编号 / `mc` 名称 / `pz` 批准 /")
@@ -504,6 +592,14 @@ def build_readme(rows):
     w("> DG/TJ08-9-2023 并存）。本库只收录**实施日期最新**的版本，")
     w("> 引用前请仍以官方公告为准。")
     w("")
+    w("**批准通知的抽取方式**：`build_sh_notices.py` 从配套仓库的 `gov_docs.csv` 里")
+    w("按标题模式挑出规范类发文（`批准《X》为上海市工程建设规范` / `发布《X导则》` /")
+    w("`印发《X技术规定》`），再用 `sh_std_raw.json` 按名称回填编号与全文 PDF。")
+    w("名称比对会先去掉标点与「上海市」前缀、再去掉尾部的「标准 / 规范 / 导则」，")
+    w("因此《上海市住宅设计标准》与《住宅设计标准》能对上。")
+    w("**约 42% 能对上编号** —— 对不上的多半是 2026 年新批准、栏目尚未更新的，")
+    w("这正是第五节存在的意义。")
+    w("")
     w("**已知待核实项**：GB 55033-2022《城市轨道交通工程项目规范》的实施日期在公开资料中未获确证，")
     w("表中留空。GB 55026/55027 的实施日期按住建部同期公告批次整理，正式的引用前请以官方公告为准。")
     w("")
@@ -513,7 +609,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 九、关于官方链接：一次真实的链接失效排查")
+    w("## 十、关于官方链接：一次真实的链接失效排查")
     w("")
     w("本仓库的官方链接全部指向住建部官网的**标准发布公告页**（公告页附标准全文 PDF）。")
     w("初次建库时曾指向「国家标准全文公开系统」，后经核查发现该系统**不收录工程建设类标准**：")
@@ -563,7 +659,7 @@ def build_readme(rows):
     w("")
     w("---")
     w("")
-    w("## 十、配套仓库：上海建设工程政府发文索引")
+    w("## 十一、配套仓库：上海建设工程政府发文索引")
     w("")
     w("技术标准之外，施工图设计还有一层依据是**政府发文**——规划管理技术规定、")
     w("施工图审查办法、抗震设防审查办法、消防设计审查验收办法、既有建筑装饰装修管理规定等。")
@@ -765,12 +861,13 @@ def build_std_note(row):
 
 def main():
     fields, rows = load_rows()
+    notices = load_sh_notices()
 
     if not rows:
         raise SystemExit("data/standards.csv 没有读到数据，请检查文件编码与表头")
 
     with open(README, "w", encoding="utf-8", newline="\n") as f:
-        f.write(build_readme(rows))
+        f.write(build_readme(rows, notices))
 
     os.makedirs(OBS_STD, exist_ok=True)
     with open(OBS_INDEX, "w", encoding="utf-8", newline="\n") as f:
@@ -792,10 +889,19 @@ def main():
         dw.writeheader()
         dw.writerows(rows)
 
+    # 批准通知单独导出一份 Excel —— 列结构与标准表不同（多文号、多链接），
+    # 混进一张表会让两边都难用。
+    with open(NOTICE_EXCEL_CSV, "w", encoding="utf-8-sig", newline="") as f:
+        dw = csv.DictWriter(f, fieldnames=NOTICE_COLS, lineterminator="\n",
+                            extrasaction="ignore")
+        dw.writeheader()
+        dw.writerows(notices)
+
     mand = sum(1 for r in rows if is_mandatory(r))
     sh = sum(1 for r in rows if is_sh_local(r))
     print("收录 %d 条（强制 %d / 推荐 %d；其中上海工程建设规范 %d）"
           % (len(rows), mand, len(rows) - mand, sh))
+    print("另收录规范批准 / 发布通知 %d 条" % len(notices))
     print("生成：README.md")
     print("生成：obsidian/标准索引.md")
     print("生成：obsidian/standards/*.md  （%d 个）" % len(rows))

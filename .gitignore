@@ -17,6 +17,9 @@
 # Excel 友好版导出（UTF-8 BOM），由 data/standards.csv 生成
 /data/standards_excel.csv
 
+# 批准通知的 Excel 导出，由 data/sh_notices.tsv 生成（同上，属产物）
+/data/sh_notices_excel.csv
+
 # Obsidian 笔记库：主索引页 ＋ 83 个标准笔记
 /obsidian/
 
